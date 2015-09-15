@@ -32,9 +32,6 @@ public class Aluno {
         }
         return true;
     }
-    
-    
-   
     public String getNome() {
         return nome;
     }
