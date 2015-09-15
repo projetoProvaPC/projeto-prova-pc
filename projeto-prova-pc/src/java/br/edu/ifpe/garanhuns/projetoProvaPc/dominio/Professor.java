@@ -1,6 +1,5 @@
 package br.edu.ifpe.garanhuns.projetoProvaPc.dominio;
 
-import java.util.*;
 public class Professor {
 
 	private String nome;
@@ -35,6 +34,7 @@ public class Professor {
 	public void createProva(){
 
 	}
+        
 	public void applyProva(){
 
 	}

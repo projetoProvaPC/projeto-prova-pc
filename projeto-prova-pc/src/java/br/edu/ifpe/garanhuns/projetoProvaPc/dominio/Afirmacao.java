@@ -13,7 +13,7 @@ public class Afirmacao {
         return texto;
     }
 
-    public boolean isVeracidade() {
+    public boolean veracidade() {
         return veracidade;
     }
 
