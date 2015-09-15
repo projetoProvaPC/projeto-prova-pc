@@ -1,15 +1,52 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package br.edu.ifpe.garanhuns.projetoProvaPc.dominio;
 
-/**
- *
- * @author lucas
- */
+import java.util.Objects;
+
 public class Aluno {
+    
+    private String nome;
+    private String matricula;
+
+    public Aluno(String nome, String matricula) {
+        this.nome = nome;
+        this.matricula = matricula;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Aluno other = (Aluno) obj;
+        if (!Objects.equals(this.matricula, other.matricula)) {
+            return false;
+        }
+        return true;
+    }
+    public String getNome() {
+        return nome;
+    }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 37 * hash + Objects.hashCode(this.matricula);
+        return hash;
+    }
     
 }
