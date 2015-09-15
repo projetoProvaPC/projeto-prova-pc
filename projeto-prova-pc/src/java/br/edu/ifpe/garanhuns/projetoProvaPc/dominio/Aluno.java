@@ -1,5 +1,7 @@
 package br.edu.ifpe.garanhuns.projetoProvaPc.dominio;
 
+import java.util.Objects;
+
 public class Aluno {
     
     private String nome;
@@ -26,7 +28,12 @@ public class Aluno {
     public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
-    
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 37 * hash + Objects.hashCode(this.matricula);
+        return hash;
+    }
     
 }
