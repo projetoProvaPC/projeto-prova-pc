@@ -14,6 +14,8 @@ import java.util.Date;
  * @author 20141D12GR0416
  */
 public class AplicacaoDaProva {
+    
+    private Prova prova;
     private Date data;
     private String senha;
 
