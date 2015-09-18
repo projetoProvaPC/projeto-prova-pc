@@ -6,13 +6,17 @@ package br.edu.ifpe.garanhuns.projetoProvaPc.dominio;
  * and open the template in the editor.
  */
 
+
+// QUEM É ISSO??
 /**
  *
  * @author 20141D12GR0416
  */
 import java.util.ArrayList;
 
-public class Questao {
+// tem que ser abstract por que não pode ter uma questão que não seja nem de V/F
+// nem de multipla escolha
+public abstract class Questao {
     private String enunciado;
     private int pontuacao;
     private ArrayList<Afirmacao> alternativas;
@@ -20,6 +24,7 @@ public class Questao {
     public Questao(String enunciado, int pontuacao) {
         this.enunciado = enunciado;
         this.pontuacao = pontuacao;
+        this.alternativas = new ArrayList<>();
     }
     
      public String getEnunciado() {
@@ -42,7 +47,7 @@ public class Questao {
         return alternativas.add(e);
     }
 
-    protected boolean remove(Object o) {
+    protected boolean remove(Afirmacao o) {
         return alternativas.remove(o);
     }
     

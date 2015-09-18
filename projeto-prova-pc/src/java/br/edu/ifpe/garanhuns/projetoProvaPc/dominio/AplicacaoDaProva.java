@@ -19,6 +19,8 @@ public class AplicacaoDaProva {
     private Date data;
     private String senha;
 
+    // essa senha tem que ser gerada automaticamente
+    // vamos ver depois como fazer isso
     public AplicacaoDaProva(Date data, String senha) {
         this.data = data;
         this.senha = senha;
