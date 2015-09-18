@@ -1,5 +1,7 @@
 package br.edu.ifpe.garanhuns.projetoProvaPc.dominio;
 
+// comentário
+
 public class Afirmacao {
     private String texto;
     private boolean veracidade;
