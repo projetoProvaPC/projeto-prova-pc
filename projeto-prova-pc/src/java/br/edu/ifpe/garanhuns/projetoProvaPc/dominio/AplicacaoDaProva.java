@@ -18,6 +18,7 @@ public class AplicacaoDaProva {
     private Prova prova;
     private Date data;
     private String senha;
+    private Disciplina disciplina;
 
     // essa senha tem que ser gerada automaticamente
     // vamos ver depois como fazer isso
@@ -41,6 +42,12 @@ public class AplicacaoDaProva {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
-    
+
+    public Disciplina getDisciplina() {
+        return disciplina;
+    }
+
+    public void setDisciplina(Disciplina d) {
+        this.disciplina = d;
+    }
 }
