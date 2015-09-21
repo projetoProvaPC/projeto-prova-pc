@@ -19,12 +19,12 @@ import java.util.ArrayList;
 public abstract class Questao {
     private String enunciado;
     private int pontuacao;
-    private ArrayList<Afirmacao> alternativas;
+    private final ArrayList<Afirmacao> afirmacoes;
 
     public Questao(String enunciado, int pontuacao) {
         this.enunciado = enunciado;
         this.pontuacao = pontuacao;
-        this.alternativas = new ArrayList<>();
+        this.afirmacoes = new ArrayList<>();
     }
     
      public String getEnunciado() {
@@ -44,11 +44,17 @@ public abstract class Questao {
     }
 
     protected boolean add(Afirmacao e) {
-        return alternativas.add(e);
+        return afirmacoes.add(e);
     }
 
     protected boolean remove(Afirmacao o) {
-        return alternativas.remove(o);
+        return afirmacoes.remove(o);
+    }
+
+    // Recupera uma afirmacao
+    //  As subclasses decidem se vão ou não deixar isso público
+    protected Afirmacao getAfirmacao(int i) {
+        return afirmacoes.get(i);
     }
     
 }

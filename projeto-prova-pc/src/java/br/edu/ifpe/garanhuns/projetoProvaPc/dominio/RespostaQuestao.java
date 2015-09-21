@@ -12,24 +12,21 @@ package br.edu.ifpe.garanhuns.projetoProvaPc.dominio;
 public abstract class RespostaQuestao<T extends Questao> {
     
     private T questao;
-    private Aluno aluno;
+
+    public RespostaQuestao(T questao) {
+        this.questao = questao;
+    }
 
     public T getQuestao() {
         return questao;
     }
 
-    public Aluno getAluno() {
-        return aluno;
-    }
-
     protected void setQuestao(T questao) {
         this.questao = questao;
     }
-
-    protected void setAluno(Aluno aluno) {
-        this.aluno = aluno;
-    }
     
     public abstract double calcularPontuacao();
+    
+    public abstract String getResposta();
     
 }
