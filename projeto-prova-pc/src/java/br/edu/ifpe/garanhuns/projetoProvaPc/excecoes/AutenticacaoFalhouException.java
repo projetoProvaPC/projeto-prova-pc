@@ -4,15 +4,12 @@
  * and open the template in the editor.
  */
 
-package br.edu.ifpe.garanhuns.projetoProvaPc.estrutura.repositorios;
+package br.edu.ifpe.garanhuns.projetoProvaPc.excecoes;
 
 /**
  *
  * @author lucas
  */
-class IdNaoDisponivel extends Exception {
-
-    public IdNaoDisponivel() {
-    }
+public class AutenticacaoFalhouException extends Exception {
     
 }

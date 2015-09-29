@@ -6,6 +6,10 @@
 
 package br.edu.ifpe.garanhuns.projetoProvaPc.fachada;
 
+import br.edu.ifpe.garanhuns.projetoProvaPc.excecoes.AutenticacaoFalhouException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author lucas
@@ -21,5 +25,9 @@ public class Fachada {
         return instance;
     }
     
+    // Os métodos hahahaha
+    public Autenticacao autenticar(String nome, String senha) throws AutenticacaoFalhouException {
+        return new Autenticacao(nome,senha);
+    }
     
 }

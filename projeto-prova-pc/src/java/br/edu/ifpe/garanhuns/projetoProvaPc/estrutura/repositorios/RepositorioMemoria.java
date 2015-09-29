@@ -6,6 +6,7 @@
 
 package br.edu.ifpe.garanhuns.projetoProvaPc.estrutura.repositorios;
 
+import br.edu.ifpe.garanhuns.projetoProvaPc.excecoes.IdNaoDisponivelException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,9 +23,9 @@ public class RepositorioMemoria<Tipo extends Persistivel> implements Repositorio
     private final Map<Integer,Tipo> elementos = new HashMap<>();
 
     @Override
-    public void adicionar(Tipo t) throws IdNaoDisponivel {
+    public void adicionar(Tipo t) throws IdNaoDisponivelException {
         if(elementos.containsKey(t.getId()))
-            throw new IdNaoDisponivel();
+            throw new IdNaoDisponivelException();
         elementos.put(t.getId(), t);
     }
 

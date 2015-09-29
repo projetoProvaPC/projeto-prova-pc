@@ -7,14 +7,14 @@
 package br.edu.ifpe.garanhuns.projetoProvaPc.estrutura.repositorios;
 
 import java.util.List;
-
+import br.edu.ifpe.garanhuns.projetoProvaPc.excecoes.IdNaoDisponivelException;
 /**
  *
  * @author lucas
  */
 public interface Repositorio<Tipo extends Persistivel> {
     
-    public void adicionar(Tipo t) throws IdNaoDisponivel;
+    public void adicionar(Tipo t) throws IdNaoDisponivelException;
     public Tipo remover(int id);
     public void alterar(Tipo t);
     public Tipo recuperar(int id);
