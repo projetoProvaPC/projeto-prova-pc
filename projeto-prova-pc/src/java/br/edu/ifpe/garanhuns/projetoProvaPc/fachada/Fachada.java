@@ -29,8 +29,8 @@ public class Fachada {
     }
     
     //  Repositorios
-    Repositorio<Prova> provas = new RepositorioMemoria<Prova>();
-    
+    Repositorio<Prova> provas = new RepositorioMemoria<>();
+   
     // Os métodos hahahaha
     public Autenticacao autenticar(String nome, String senha) throws AutenticacaoFalhouException {
         return new Autenticacao(nome,senha);
