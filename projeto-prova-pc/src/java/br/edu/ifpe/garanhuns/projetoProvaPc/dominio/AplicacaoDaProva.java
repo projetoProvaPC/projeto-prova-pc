@@ -18,13 +18,14 @@ public class AplicacaoDaProva {
     private Prova prova;
     private Date data;
     private String senha;
-    private Disciplina disciplina;
+    private String disciplina;
 
     // essa senha tem que ser gerada automaticamente
     // vamos ver depois como fazer isso
-    public AplicacaoDaProva(Date data, String senha) {
-        this.data = data;
+    public AplicacaoDaProva(Prova prova, String senha, String disciplina) {
         this.senha = senha;
+        this.disciplina = disciplina;
+        this.prova = prova;
     }
 
     public Date getData() {
@@ -43,11 +44,11 @@ public class AplicacaoDaProva {
         this.senha = senha;
     }
 
-    public Disciplina getDisciplina() {
+    public String getDisciplina() {
         return disciplina;
     }
 
-    public void setDisciplina(Disciplina d) {
-        this.disciplina = d;
+    public void setDisciplina(String disciplina) {
+        this.disciplina = disciplina;
     }
 }
