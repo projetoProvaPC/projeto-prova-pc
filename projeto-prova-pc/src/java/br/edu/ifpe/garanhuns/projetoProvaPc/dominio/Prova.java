@@ -1,13 +1,15 @@
 package br.edu.ifpe.garanhuns.projetoProvaPc.dominio;
 
+import br.edu.ifpe.garanhuns.projetoProvaPc.estrutura.repositorios.Persistivel;
 import java.util.*;
 
-public class Prova {
+public class Prova implements Persistivel<Prova>{
 
+    private int id;
     private String tema;
     private ArrayList<Questao> questoes = new ArrayList<Questao>();
 
-    public Prova(String tema) {
+    public Prova(int id, String tema) {
         this.tema = tema;
     }
     
@@ -33,6 +35,16 @@ public class Prova {
 
     public Iterator<Questao> iterator() {
         return questoes.iterator();
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public void alterar(Prova t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     

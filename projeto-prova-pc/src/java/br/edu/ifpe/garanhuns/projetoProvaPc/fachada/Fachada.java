@@ -6,9 +6,11 @@
 
 package br.edu.ifpe.garanhuns.projetoProvaPc.fachada;
 
+import br.edu.ifpe.garanhuns.projetoProvaPc.dominio.Prova;
+import br.edu.ifpe.garanhuns.projetoProvaPc.estrutura.repositorios.Repositorio;
+import br.edu.ifpe.garanhuns.projetoProvaPc.estrutura.repositorios.RepositorioMemoria;
 import br.edu.ifpe.garanhuns.projetoProvaPc.excecoes.AutenticacaoFalhouException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import br.edu.ifpe.garanhuns.projetoProvaPc.excecoes.IdNaoDisponivelException;
 
 /**
  *
@@ -25,9 +27,20 @@ public class Fachada {
         return instance;
     }
     
+    //  Repositorios
+    Repositorio<Prova> provas = new RepositorioMemoria<Prova>();
+    
     // Os métodos hahahaha
     public Autenticacao autenticar(String nome, String senha) throws AutenticacaoFalhouException {
         return new Autenticacao(nome,senha);
+    }
+
+    public void adicionar(Prova p) throws IdNaoDisponivelException {
+        provas.adicionar(p);
+    }
+
+    public int getProvaProxId() {
+        return provas.proxId();
     }
     
 }

@@ -6,7 +6,7 @@ public class Afirmacao {
     private String texto;
     private boolean veracidade;
     
-    Afirmacao(String texto, boolean veracidade){
+    public Afirmacao(String texto, boolean veracidade){
         this.texto = texto;
         this.veracidade = veracidade;
     }
