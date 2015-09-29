@@ -1,0 +1,23 @@
+<%-- 
+    Document   : paginaProfessor
+    Created on : 29/09/2015, 15:00:12
+    Author     : 20141D12GR0122
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <% // if(session.getAttribute("autenticacao")==null) response.sendRedirect("login.jsp"); %>
+        <h1>Ola professor!</h1>
+                <a href="newProva.jsp">Criar Prova</a><br/>
+                <a href="editarProva.jsp">Provas Criadas:<a/><br/>
+                <a href="provaAplicada.jsp">Aplicar prova:<a/><br/>
+                <a href="editarProva.jsp">Editar Provas:<a/><br/>
+                <a href="resultados.jsp"> Resultados:<a/><br/>                       
+    </body>
+</html>

@@ -6,6 +6,7 @@
 
 package br.edu.ifpe.garanhuns.projetoProvaPc.fachada;
 
+import br.edu.ifpe.garanhuns.projetoProvaPc.builders.ProvaBuilder;
 import br.edu.ifpe.garanhuns.projetoProvaPc.dominio.Prova;
 import br.edu.ifpe.garanhuns.projetoProvaPc.estrutura.repositorios.Repositorio;
 import br.edu.ifpe.garanhuns.projetoProvaPc.estrutura.repositorios.RepositorioMemoria;
@@ -41,6 +42,10 @@ public class Fachada {
 
     public int getProvaProxId() {
         return provas.proxId();
+    }
+    
+    public ProvaBuilder getProvaBuilder() {
+        return new ProvaBuilder();
     }
     
 }
