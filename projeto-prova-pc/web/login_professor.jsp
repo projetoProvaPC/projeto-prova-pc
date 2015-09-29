@@ -14,14 +14,9 @@
     <body>
         <h1>Seja bem-vindo ao Prova PC</h1>
         <form method="post" action="LoginServlet">
-            
             Login: <input type="text" name="login"> <br/>
             Senha: <input type="password" name="pwd"> <br/>
-            
-            <input type="submit" value="Entrar"
-
-                   >
-            
+            <input type="submit" value="Entrar"/>
         </form>
     </body>
 </html>

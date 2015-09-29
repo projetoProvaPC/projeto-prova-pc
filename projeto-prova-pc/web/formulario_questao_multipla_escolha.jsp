@@ -14,7 +14,7 @@
     <body>
         <h1>Pagina em construção!</h1>
         
-        <form method="post" action="NovaQuestaoServlet">
+        <form method="post" action="ConstrucaoQuestaoMultiplaEscolhaServlet">
             
             Enunciado:<br/>
             <input name="enumciado" type="text"/><br/>

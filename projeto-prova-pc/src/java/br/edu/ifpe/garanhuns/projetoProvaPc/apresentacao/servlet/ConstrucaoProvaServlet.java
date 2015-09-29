@@ -6,8 +6,8 @@ package br.edu.ifpe.garanhuns.projetoProvaPc.apresentacao.servlet;
  * and open the template in the editor.
  */
 
-import br.edu.ifpe.garanhuns.projetoProvaPc.builders.ProvaBuilder;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author 20141D12GR0122
  */
-@WebServlet(urlPatterns = {"/NovaQuestaoServlet"})
-public class NovaQuestaoServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/ConstrucaoProvaServlet"})
+public class ConstrucaoProvaServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,22 +32,8 @@ public class NovaQuestaoServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        ProvaBuilder pb = (ProvaBuilder) request.getSession().getAttribute("pb");
-        /*
-        pb.addQuestao(request.getAttribute("enunciado"));
-        
-        char correta = request.getParameter("correta").charAt(0);
-        
-        for(char l = 'a'; l<='e';l++) {
-            String afirmacao = request.getParameter("afirmacao" + l);
-            boolean veracidade = correta == l;
-            pb.adicionarAlternativa(afirmacao,veracidade);
-        }
-        pb.buildQuestao();
-        */
-        response.setContentType("text/html;charset=UTF-8");
-        response.sendRedirect("mostarProvaEmConstrucao.jsp");
+        // contruir
+        response.sendRedirect("index_professor.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

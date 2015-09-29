@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             
             throws ServletException, IOException {
-            response.sendRedirect("indexProfessor.jsp");
+            response.sendRedirect("index_professor.jsp");
             response.setContentType("text/html;charset=UTF-8");
   
     }

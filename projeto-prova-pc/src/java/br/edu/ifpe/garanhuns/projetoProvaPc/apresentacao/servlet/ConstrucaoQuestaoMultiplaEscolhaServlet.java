@@ -7,7 +7,6 @@ package br.edu.ifpe.garanhuns.projetoProvaPc.apresentacao.servlet;
  */
 
 import br.edu.ifpe.garanhuns.projetoProvaPc.builders.ProvaBuilder;
-import br.edu.ifpe.garanhuns.projetoProvaPc.fachada.Fachada;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author 20141D12GR0122
  */
-@WebServlet(urlPatterns = {"/newProvaServlet"})
-public class newProvaServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/ConstrucaoQuestaoMultiplaEscolhaServlet"})
+public class ConstrucaoQuestaoMultiplaEscolhaServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,14 +32,22 @@ public class newProvaServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            
-        ProvaBuilder pb = Fachada.getInstance().getProvaBuilder();
-        pb.setTema(request.getParameter("tema"));
-        request.getSession().setAttribute("pb", pb);
-        response.sendRedirect("novaQuestao.jsp");
-        response.setContentType("text/html;charset=UTF-8");
-  
         
+        ProvaBuilder pb = (ProvaBuilder) request.getSession().getAttribute("pb");
+        /*
+        pb.addQuestao(request.getAttribute("enunciado"));
+        
+        char correta = request.getParameter("correta").charAt(0);
+        
+        for(char l = 'a'; l<='e';l++) {
+            String afirmacao = request.getParameter("afirmacao" + l);
+            boolean veracidade = correta == l;
+            pb.adicionarAlternativa(afirmacao,veracidade);
+        }
+        pb.buildQuestao();
+        */
+        response.setContentType("text/html;charset=UTF-8");
+        response.sendRedirect("apresentacao_prova_em_construcao.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

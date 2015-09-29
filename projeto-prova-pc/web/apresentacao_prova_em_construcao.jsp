@@ -13,7 +13,7 @@
     </head>
     <body>
         <h1>Finja que aqui tem uma prova!</h1>
-        <a href="novaQuestao.jsp">Adicionar outra Questão</a><br/>
-        <a href="BuildProvaServler">Finalizar</a><br/>
+        <a href="formulario_questao_multipla_escolha.jsp">Adicionar outra Questão</a><br/>
+        <a href="ConstrucaoProvaServlet">Finalizar</a><br/>
     </body>
 </html>

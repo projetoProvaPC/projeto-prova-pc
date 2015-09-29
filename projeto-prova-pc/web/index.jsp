@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <a href="login.jsp">login</a>
+        <a href="login_professor.jsp">login</a>
     </body>
 </html>

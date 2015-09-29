@@ -13,9 +13,9 @@
     </head>
     <body>
         <h1>Formulario em construção!</h1>
-        <form method="post" action="newProvaServlet">
-          TEMA: <input type="text" name="tema"> <br/>
-          <input type="submit" value="Adicionar Questão">
+        <form method="post" action="IniciaConstrucaoProvaServlet">
+            TEMA: <input type="text" name="tema"> <br/>
+            <input type="submit" value="Adicionar Questão">
         </form>
     </body>
 </html>
