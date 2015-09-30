@@ -6,6 +6,7 @@
 
 package br.edu.ifpe.garanhuns.projetoProvaPc.fachada;
 
+import br.edu.ifpe.garanhuns.projetoProvaPc.dominio.Professor;
 import br.edu.ifpe.garanhuns.projetoProvaPc.excecoes.AutenticacaoFalhouException;
 
 /**
@@ -13,8 +14,13 @@ import br.edu.ifpe.garanhuns.projetoProvaPc.excecoes.AutenticacaoFalhouException
  * @author lucas
  */
 public class Autenticacao {
-
-    public Autenticacao(String nome, String senha) throws AutenticacaoFalhouException{
-    }
     
+    public Autenticacao(int codigo, String senha) throws AutenticacaoFalhouException{
+        Fachada f = Fachada.getInstance();
+        Professor p = f.recuperarProfessor(codigo);
+        if(!p.testarSenha(senha)) {
+            throw new AutenticacaoFalhouException();
+        }
+    }
+
 }

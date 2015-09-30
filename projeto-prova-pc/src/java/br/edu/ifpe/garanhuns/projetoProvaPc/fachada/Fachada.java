@@ -7,6 +7,7 @@
 package br.edu.ifpe.garanhuns.projetoProvaPc.fachada;
 
 import br.edu.ifpe.garanhuns.projetoProvaPc.builders.ProvaBuilder;
+import br.edu.ifpe.garanhuns.projetoProvaPc.dominio.Professor;
 import br.edu.ifpe.garanhuns.projetoProvaPc.dominio.Prova;
 import br.edu.ifpe.garanhuns.projetoProvaPc.estrutura.repositorios.Repositorio;
 import br.edu.ifpe.garanhuns.projetoProvaPc.estrutura.repositorios.RepositorioMemoria;
@@ -31,11 +32,13 @@ public class Fachada {
     }
     
     //  Repositorios
-    Repositorio<Prova> provas = new RepositorioMemoria<>();
+    private String tipo;
+    private final Repositorio<Prova> provas = new RepositorioMemoria<>();
+    private final Repositorio<Professor> professores = new RepositorioMemoria<>();
    
     // Os métodos hahahaha
-    public Autenticacao autenticar(String nome, String senha) throws AutenticacaoFalhouException {
-        return new Autenticacao(nome,senha);
+    public Autenticacao autenticar(int codigo, String senha) throws AutenticacaoFalhouException {
+        return new Autenticacao(codigo,senha);
     }
 
     private void adicionar(Prova p) throws IdNaoDisponivelException {
@@ -55,6 +58,19 @@ public class Fachada {
             if (pb!=null) provas.adicionar(pb.build());
         } catch (IdNaoDisponivelException ex) {
             Logger.getLogger(Fachada.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    Professor recuperarProfessor(int codigo) {
+        return professores.recuperar(codigo);
+    }
+
+    public void adicionarProfessor(String nome, int siap, String senha) {
+        Professor p = new Professor(nome,siap,senha);
+        try {
+            professores.adicionar(p);
+        } catch (Exception e) { // não tem muito o que fazer kkk depois concertamos!
+            return;
         }
     }
     

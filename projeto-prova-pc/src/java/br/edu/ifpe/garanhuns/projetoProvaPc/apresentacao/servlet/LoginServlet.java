@@ -33,21 +33,20 @@ public class LoginServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            
             throws ServletException, IOException {
         
-        String login = request.getParameter("login");
-        String pwd = request.getParameter("pwd");
-        Autenticacao a = null;
-        
         try {
-            a = Fachada.getInstance().autenticar(login, pwd);
-        } catch (AutenticacaoFalhouException ex) {
+            
+            int codigo = Integer.parseInt(request.getParameter("login"));
+            String pwd = request.getParameter("pwd");
+            Autenticacao a = Fachada.getInstance().autenticar(codigo, pwd);
+            request.getSession().setAttribute("autenticacao", a);
+            response.sendRedirect("index_professor.jsp");
+            
+        } catch (Exception ex) {
             response.sendRedirect("pagina_erro.jsp");
         }
         
-        request.getSession().setAttribute("autenticacao", a);
-        response.sendRedirect("index_professor.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

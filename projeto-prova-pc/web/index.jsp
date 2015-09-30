@@ -13,5 +13,6 @@
     </head>
     <body>
         <a href="login_professor.jsp">login</a>
+        <a href="formulario_cadastrar_professor.jsp">cadastrar professor</a>
     </body>
 </html>
