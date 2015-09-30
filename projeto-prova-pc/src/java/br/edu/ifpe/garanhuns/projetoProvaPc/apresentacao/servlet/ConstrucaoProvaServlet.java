@@ -6,6 +6,8 @@ package br.edu.ifpe.garanhuns.projetoProvaPc.apresentacao.servlet;
  * and open the template in the editor.
  */
 
+import br.edu.ifpe.garanhuns.projetoProvaPc.builders.ProvaBuilder;
+import br.edu.ifpe.garanhuns.projetoProvaPc.fachada.Fachada;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -32,7 +34,7 @@ public class ConstrucaoProvaServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // contruir
+        Fachada.getInstance().adicionar((ProvaBuilder) request.getSession().getAttribute("pb"));
         response.sendRedirect("index_professor.jsp");
     }
 

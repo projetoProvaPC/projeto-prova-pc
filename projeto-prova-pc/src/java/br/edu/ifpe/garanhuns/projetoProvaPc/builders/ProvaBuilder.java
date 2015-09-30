@@ -54,17 +54,12 @@ public class ProvaBuilder {
         questoes.add(q);
     }
     
-    public boolean build() {
+    public Prova build() {
         Prova p = new Prova(Fachada.getInstance().getProvaProxId(), tema);
         for (QuestaoMultiplaEscolha questaoMultiplaEscolha : questoes) {
             p.add(questaoMultiplaEscolha);
         }
-        try {
-            Fachada.getInstance().adicionar(p);
-        } catch (IdNaoDisponivelException inde) {
-            return false;
-        }
-        return true;
+        return p;
     }
     
 }

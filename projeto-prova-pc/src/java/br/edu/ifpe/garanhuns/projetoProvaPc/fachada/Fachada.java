@@ -12,6 +12,8 @@ import br.edu.ifpe.garanhuns.projetoProvaPc.estrutura.repositorios.Repositorio;
 import br.edu.ifpe.garanhuns.projetoProvaPc.estrutura.repositorios.RepositorioMemoria;
 import br.edu.ifpe.garanhuns.projetoProvaPc.excecoes.AutenticacaoFalhouException;
 import br.edu.ifpe.garanhuns.projetoProvaPc.excecoes.IdNaoDisponivelException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -36,7 +38,7 @@ public class Fachada {
         return new Autenticacao(nome,senha);
     }
 
-    public void adicionar(Prova p) throws IdNaoDisponivelException {
+    private void adicionar(Prova p) throws IdNaoDisponivelException {
         provas.adicionar(p);
     }
 
@@ -46,6 +48,14 @@ public class Fachada {
     
     public ProvaBuilder getProvaBuilder() {
         return new ProvaBuilder();
+    }
+ 
+    public void adicionar (ProvaBuilder pb) {
+        try {
+            if (pb!=null) provas.adicionar(pb.build());
+        } catch (IdNaoDisponivelException ex) {
+            Logger.getLogger(Fachada.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }
