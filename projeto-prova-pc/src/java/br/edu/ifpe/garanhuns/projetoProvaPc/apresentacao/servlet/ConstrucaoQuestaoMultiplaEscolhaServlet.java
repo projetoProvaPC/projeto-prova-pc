@@ -8,6 +8,8 @@ package br.edu.ifpe.garanhuns.projetoProvaPc.apresentacao.servlet;
 
 import br.edu.ifpe.garanhuns.projetoProvaPc.builders.ProvaBuilder;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,19 +36,23 @@ public class ConstrucaoQuestaoMultiplaEscolhaServlet extends HttpServlet {
             throws ServletException, IOException {
         
         ProvaBuilder pb = (ProvaBuilder) request.getSession().getAttribute("pb");
-        /*
-        pb.addQuestao(request.getAttribute("enunciado"));
+        
+        pb.adicionarQuestao(request.getAttribute("enunciado").toString(),1);
         
         char correta = request.getParameter("correta").charAt(0);
         
         for(char l = 'a'; l<='e';l++) {
             String afirmacao = request.getParameter("afirmacao" + l);
             boolean veracidade = correta == l;
-            pb.adicionarAlternativa(afirmacao,veracidade);
+            pb.adicionarAlternativa(veracidade,afirmacao);
         }
-        pb.buildQuestao();
-        */
-        response.setContentType("text/html;charset=UTF-8");
+        
+        try {
+            pb.buildQuestao();
+        } catch (Exception ex) {
+            response.sendRedirect("pagina_erro.jsp");
+        }
+        
         response.sendRedirect("apresentacao_prova_em_construcao.jsp");
     }
 

@@ -6,8 +6,10 @@ package br.edu.ifpe.garanhuns.projetoProvaPc.apresentacao.servlet;
  * and open the template in the editor.
  */
 
+import br.edu.ifpe.garanhuns.projetoProvaPc.excecoes.AutenticacaoFalhouException;
+import br.edu.ifpe.garanhuns.projetoProvaPc.fachada.Autenticacao;
+import br.edu.ifpe.garanhuns.projetoProvaPc.fachada.Fachada;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,9 +35,19 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             
             throws ServletException, IOException {
-            response.sendRedirect("index_professor.jsp");
-            response.setContentType("text/html;charset=UTF-8");
-  
+        
+        String login = request.getParameter("login");
+        String pwd = request.getParameter("pwd");
+        Autenticacao a = null;
+        
+        try {
+            a = Fachada.getInstance().autenticar(login, pwd);
+        } catch (AutenticacaoFalhouException ex) {
+            response.sendRedirect("pagina_erro.jsp");
+        }
+        
+        request.getSession().setAttribute("autenticacao", a);
+        response.sendRedirect("index_professor.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

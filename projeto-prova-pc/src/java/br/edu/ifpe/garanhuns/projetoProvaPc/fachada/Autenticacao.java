@@ -12,7 +12,7 @@ import br.edu.ifpe.garanhuns.projetoProvaPc.excecoes.AutenticacaoFalhouException
  *
  * @author lucas
  */
-class Autenticacao {
+public class Autenticacao {
 
     public Autenticacao(String nome, String senha) throws AutenticacaoFalhouException{
     }

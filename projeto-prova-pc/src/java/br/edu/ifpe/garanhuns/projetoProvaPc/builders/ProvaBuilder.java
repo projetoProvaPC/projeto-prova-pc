@@ -40,11 +40,11 @@ public class ProvaBuilder {
         return tema;
     }
     
-    public void novaQuestao(String enunciado, int pontuacao) {
+    public void adicionarQuestao(String enunciado, int pontuacao) {
         this.enunciado = enunciado;
     }
     
-    public void addAlternativa(boolean veracidade, String afirmativa) {
+    public void adicionarAlternativa(boolean veracidade, String afirmativa) {
         Afirmacao a = new Afirmacao(afirmativa,veracidade);
         afirmacoes.add(a);
     }
