@@ -17,7 +17,7 @@
         <form method="post" action="ConstrucaoQuestaoMultiplaEscolhaServlet">
             
             Enunciado:<br/>
-            <input name="enumciado" type="text"/><br/>
+            <input name="enunciado" type="text"/><br/>
             
             <input type="radio" name="correta" value="a"/>
             <input type="text" name="afirmcaoA"/><br/>

@@ -36,7 +36,7 @@ public class IniciaConstrucaoProvaServlet extends HttpServlet {
             
         ProvaBuilder pb = Fachada.getInstance().getProvaBuilder();
         pb.setTema(request.getParameter("tema"));
-        request.getSession().setAttribute("pb", pb);
+        request.getSession().setAttribute("prova_builder", pb);
         response.sendRedirect("formulario_questao_multipla_escolha.jsp");
         response.setContentType("text/html;charset=UTF-8");
   

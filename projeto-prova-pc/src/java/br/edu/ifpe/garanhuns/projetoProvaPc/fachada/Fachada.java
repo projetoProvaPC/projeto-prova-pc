@@ -13,6 +13,7 @@ import br.edu.ifpe.garanhuns.projetoProvaPc.estrutura.repositorios.Repositorio;
 import br.edu.ifpe.garanhuns.projetoProvaPc.estrutura.repositorios.RepositorioMemoria;
 import br.edu.ifpe.garanhuns.projetoProvaPc.excecoes.AutenticacaoFalhouException;
 import br.edu.ifpe.garanhuns.projetoProvaPc.excecoes.IdNaoDisponivelException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -72,6 +73,10 @@ public class Fachada {
         } catch (Exception e) { // não tem muito o que fazer kkk depois concertamos!
             return;
         }
+    }
+
+    public List<Prova> recuperarTodasAsProvas() {
+        return provas.recuperar();
     }
     
 }

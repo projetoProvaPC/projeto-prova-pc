@@ -6,9 +6,11 @@
 
 package br.edu.ifpe.garanhuns.projetoProvaPc.apresentacao.servlet;
 
+import br.edu.ifpe.garanhuns.projetoProvaPc.dominio.Prova;
 import br.edu.ifpe.garanhuns.projetoProvaPc.fachada.Fachada;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,8 +21,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author lucas
  */
-@WebServlet(name = "CadastrarProfessorServlet", urlPatterns = {"/CadastrarProfessorServlet"})
-public class CadastrarProfessorServlet extends HttpServlet {
+@WebServlet(name = "RecuperarTodasAsProvasServlet", urlPatterns = {"/RecuperarTodasAsProvasServlet"})
+public class RecuperarTodasAsProvasServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,20 +35,11 @@ public class CadastrarProfessorServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            
-            String nome = request.getParameter("nome");
-            int siap = Integer.parseInt(request.getParameter("siap"));
-            String senha1 = request.getParameter("senha1");
-            String senha2 = request.getParameter("senha2");
-            
-            if(senha1==null || !senha1.equals(senha2)) throw new Exception();
-            
-            Fachada.getInstance().adicionarProfessor(nome,siap,senha1);
-            response.sendRedirect("index.jsp");
-        } catch (Exception e) {
-            response.sendRedirect("pagina_erro.jsp");
-        }
+        
+        List<Prova> provas = Fachada.getInstance().recuperarTodasAsProvas();
+        request.getSession().setAttribute("provas", provas);
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

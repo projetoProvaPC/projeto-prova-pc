@@ -4,7 +4,9 @@
     Author     : lucas
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.io.PrintWriter"%>
+<%@page import="java.io.StringWriter"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" isErrorPage="true" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,5 +15,15 @@
     </head>
     <body>
         <h1>Ops! Deu pau!</h1>
+        <% Exception e = (Exception) request.getSession().getAttribute("exception");
+           if (e!=null) { 
+                StringWriter sw = new StringWriter();
+                PrintWriter pw = new PrintWriter(sw);
+                e.printStackTrace(pw);
+
+        %>
+           <p> <%=e.getMessage() %> </p>
+           <p> <%=sw.toString()%> </p>
+           <% } %>
     </body>
 </html>
