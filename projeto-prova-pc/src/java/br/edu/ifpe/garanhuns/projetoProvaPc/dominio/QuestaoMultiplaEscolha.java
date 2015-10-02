@@ -15,12 +15,12 @@ public class QuestaoMultiplaEscolha extends Questao {
         
         // Devem ter 5 alternativas
         if(alternativas.length!=5) 
-            throw new Exception("Quantidade de questoes errada!");
+            throw new Exception("Quantidade de questoes errada! n = " + alternativas.length);
         
         boolean temUmaCorreata = false;
         
         // Adiciona as alternativas
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             Afirmacao a = alternativas[i];
             // Só pode ter uma correta
             if(a.veracidade() && !temUmaCorreata ) {

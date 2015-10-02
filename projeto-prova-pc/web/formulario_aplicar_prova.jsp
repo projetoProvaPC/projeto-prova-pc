@@ -14,9 +14,9 @@
     <body>
         tema:<%=session.getAttribute("tema")%> <br>
         
-        turma: <input type="text" name="Turma"> <br/>
-        
-         <a href="AplicarProvaServlet">Aplicar</a>
-                
+        <form method="post" action="AplicarProvaServlet">
+            turma: <input type="text" name="turma"> <br/>
+            <input type="submit" value="aplicar"/>
+        </form>
     </body>
 </html>

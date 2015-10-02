@@ -55,9 +55,11 @@ public class ProvaBuilder {
         afirmacoes.add(a);
     }
     
-    public void buildQuestao() throws Exception{
+    public void buildQuestao() throws Exception {
         QuestaoMultiplaEscolha q = new QuestaoMultiplaEscolha(enunciado, pontuacao,afirmacoes.toArray(new Afirmacao [0]));
         questoes.add(q);
+        afirmacoes.clear();
+        this.enunciado = null;
     }
     
     public Prova build() {

@@ -41,7 +41,7 @@ public class CadastrarProfessorServlet extends HttpServlet {
             if(senha1==null || !senha1.equals(senha2)) throw new Exception();
             
             Fachada.getInstance().adicionarProfessor(siap,senha1);
-            
+            response.sendRedirect("index.jsp");
         } catch (Exception e) {
             response.sendRedirect("pagina_erro.jsp");
         }

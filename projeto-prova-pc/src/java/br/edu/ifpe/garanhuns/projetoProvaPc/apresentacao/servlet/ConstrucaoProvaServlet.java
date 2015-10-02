@@ -34,7 +34,7 @@ public class ConstrucaoProvaServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Fachada.getInstance().adicionar((ProvaBuilder) request.getSession().getAttribute("pb"));
+        Fachada.getInstance().adicionar((ProvaBuilder) request.getSession().getAttribute("prova_builder"));
         response.sendRedirect("index_professor.jsp");
     }
 

@@ -39,6 +39,6 @@ public class RandomString {
   public String nextString() {
     for (int idx = 0; idx < buf.length; ++idx) 
       buf[idx] = symbols[random.nextInt(symbols.length)];
-    return new String(buf);
+    return new String(buf).toUpperCase();
   }
 }

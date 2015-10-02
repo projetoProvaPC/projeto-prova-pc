@@ -38,9 +38,6 @@ public class IniciaConstrucaoProvaServlet extends HttpServlet {
         pb.setTema(request.getParameter("tema"));
         request.getSession().setAttribute("prova_builder", pb);
         response.sendRedirect("formulario_questao_multipla_escolha.jsp");
-        response.setContentType("text/html;charset=UTF-8");
-  
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
