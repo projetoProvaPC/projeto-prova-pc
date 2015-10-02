@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  *
@@ -21,11 +20,14 @@ import java.util.Set;
 public class RepositorioMemoria<Tipo extends Persistivel> implements Repositorio<Tipo> {
 
     private final Map<Integer,Tipo> elementos = new HashMap<>();
-
+    private int maxid = 1;
+    
     @Override
     public void adicionar(Tipo t) throws IdNaoDisponivelException {
         if(elementos.containsKey(t.getId()))
             throw new IdNaoDisponivelException();
+        else if(maxid < t.getId() )
+            maxid = t.getId();
         elementos.put(t.getId(), t);
     }
 
@@ -59,14 +61,7 @@ public class RepositorioMemoria<Tipo extends Persistivel> implements Repositorio
 
     @Override
     public int proxId() {
-        Set<Integer> set = elementos.keySet();
-        int i = 1;
-        for (int j : set) {
-            if(i==j) {
-                i++;
-            }
-        }
-        return i;
+        return ++maxid;
     }
     
     
