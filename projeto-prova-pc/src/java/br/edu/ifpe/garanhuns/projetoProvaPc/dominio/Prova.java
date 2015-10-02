@@ -50,6 +50,10 @@ public class Prova implements Persistivel<Prova>{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public Professor getProfessor() {
+        return professor;
+    }
+
     
     
 }

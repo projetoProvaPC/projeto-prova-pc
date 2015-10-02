@@ -7,6 +7,7 @@
 package br.edu.ifpe.garanhuns.projetoProvaPc.apresentacao.servlet;
 
 import br.edu.ifpe.garanhuns.projetoProvaPc.dominio.Prova;
+import br.edu.ifpe.garanhuns.projetoProvaPc.fachada.Autenticacao;
 import br.edu.ifpe.garanhuns.projetoProvaPc.fachada.Fachada;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,8 +37,9 @@ public class RecuperarTodasAsProvasServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        List<Prova> provas = Fachada.getInstance().recuperarTodasAsProvas();
+        HttpSession session = request.getSession();
+        Autenticacao a = (Autenticacao) session.getAttribute("autenticacao");
+        List<Prova> provas = Fachada.getInstance().recuperarTodasAsProvas(a.getProfessor());
         request.getSession().setAttribute("provas", provas);
         
         

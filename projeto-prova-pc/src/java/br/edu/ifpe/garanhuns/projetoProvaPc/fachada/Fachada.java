@@ -79,16 +79,6 @@ public class Fachada {
         }
     }
 
-    public List<Prova> recuperarProvas(Professor prof) {
-        List<Prova> provas = new LinkedList<>();
-        
-        for (Prova prova : this.provas.recuperar()) {
-            if(prova.getProfessor().equals(prof)) 
-                provas.add(prova);
-        }
-        return provas;
-    }
-
     public AplicacaoDaProva criarAplicacaoProva(Prova p, String turma) {
         return new AplicacaoDaProva(p, gerarSenha(), turma);
     }
@@ -99,6 +89,16 @@ public class Fachada {
 
     public AplicacaoDaProva responderProva(String senha) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public List<Prova> recuperarTodasAsProvas(Professor professor) {
+        List<Prova> provas = new LinkedList<>();
+        
+        for (Prova prova : this.provas.recuperar()) {
+            if(prova.getProfessor().equals(professor)) 
+                provas.add(prova);
+        }
+        return provas;
     }
     
 }
