@@ -18,14 +18,14 @@ import java.util.Objects;
 public class RespostaProva {
 
     // São a resposta de uma aluno
-    private Aluno aluno;
+    private String aluno;
     // Em uma determinada aplicação da prova
     private AplicacaoDaProva prova; //  isso também identifica a prova
     // Relaciona questoes com as repostas para elas!
     private final Map<Questao,RespostaQuestao> respostas;
 
     // Construtor simples
-    public RespostaProva(Aluno aluno, AplicacaoDaProva prova) {
+    public RespostaProva(String aluno, AplicacaoDaProva prova) {
         this.aluno = aluno;
         this.prova = prova;
         this.respostas = new HashMap<>();
@@ -33,11 +33,11 @@ public class RespostaProva {
     
     // Getters e setters
     // Evite usar esses setters, já que não é uma coisa legal de se mudar.
-    public Aluno getAluno() {
+    public String getAluno() {
         return aluno;
     }
 
-    public void setAluno(Aluno aluno) {
+    public void setAluno(String aluno) {
         this.aluno = aluno;
     }
 
