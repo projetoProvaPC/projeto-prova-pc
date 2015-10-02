@@ -51,4 +51,9 @@ public class AplicacaoDaProva {
     public void setDisciplina(String disciplina) {
         this.disciplina = disciplina;
     }
+    
+    public String getTurma() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

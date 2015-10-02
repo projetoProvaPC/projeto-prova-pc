@@ -1,0 +1,45 @@
+Only in web/: META-INF
+Only in web/: WEB-INF
+Only in web/: apresenta_resultados.jsp
+Only in web/: apresentar_aplicacao_prova.jsp
+diff web/formulario_cadastrar_professor.jsp /home/lucas/transmissao/Dropbox/ppp/fachada//../jsp/formulario_cadastrar_professor.jsp
+17d16
+<             Nome: <input type="text" name="nome"/> <br/>
+diff web/formulario_questao_multipla_escolha.jsp /home/lucas/transmissao/Dropbox/ppp/fachada//../jsp/formulario_questao_multipla_escolha.jsp
+20c20
+<             <input name="enunciado" type="text"/><br/>
+---
+>             <input name="enumciado" type="text"/><br/>
+Only in web/: formulario_responder_prova.jsp
+Only in /home/lucas/transmissao/Dropbox/ppp/fachada//../jsp: fornulario_aplicar_prova.jsp
+diff web/index_professor.jsp /home/lucas/transmissao/Dropbox/ppp/fachada//../jsp/index_professor.jsp
+18,19c18,21
+<                 <a href="provaAplicada.jsp">Aplicar prova:<a/> <br/>
+<                 <a href="RecuperarAplicacaoDeProvaServlet">Ver Resultados:<a/><br/>
+---
+>                 <a href="editarProva.jsp">Provas Criadas:<a/>  <br/>
+>                 <a href="RecuperarTodasAsProvasServlet">Aplicar prova:<a/> <br/>
+>                 <a href="editarProva.jsp">Editar Provas:<a/>   <br/>
+>                 <a href="resultados.jsp"> Resultados:<a/>      <br/>                       
+Only in /home/lucas/transmissao/Dropbox/ppp/fachada//../jsp: pagina_aplicar_prova.jsp
+diff web/pagina_erro.jsp /home/lucas/transmissao/Dropbox/ppp/fachada//../jsp/pagina_erro.jsp
+7,9c7
+< <%@page import="java.io.PrintWriter"%>
+< <%@page import="java.io.StringWriter"%>
+< <%@page contentType="text/html" pageEncoding="UTF-8" isErrorPage="true" %>
+---
+> <%@page contentType="text/html" pageEncoding="UTF-8"%>
+18,27d15
+<         <% Exception e = (Exception) request.getSession().getAttribute("exception");
+<            if (e!=null) { 
+<                 StringWriter sw = new StringWriter();
+<                 PrintWriter pw = new PrintWriter(sw);
+<                 e.printStackTrace(pw);
+< 
+<         %>
+<            <p> <%=e.getMessage() %> </p>
+<            <p> <%=sw.toString()%> </p>
+<            <% } %>
+Only in web/: pagina_prova_terminada.jsp
+Only in web/: prova.jsp
+Only in /home/lucas/transmissao/Dropbox/ppp/fachada//../jsp: selecionar_prova_para_aplicar.jsp

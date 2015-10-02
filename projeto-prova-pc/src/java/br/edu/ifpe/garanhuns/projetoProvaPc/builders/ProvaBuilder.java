@@ -6,10 +6,7 @@
 
 package br.edu.ifpe.garanhuns.projetoProvaPc.builders;
 
-import br.edu.ifpe.garanhuns.projetoProvaPc.dominio.Afirmacao;
-import br.edu.ifpe.garanhuns.projetoProvaPc.dominio.Prova;
-import br.edu.ifpe.garanhuns.projetoProvaPc.dominio.Questao;
-import br.edu.ifpe.garanhuns.projetoProvaPc.dominio.QuestaoMultiplaEscolha;
+import br.edu.ifpe.garanhuns.projetoProvaPc.dominio.*;
 import br.edu.ifpe.garanhuns.projetoProvaPc.excecoes.IdNaoDisponivelException;
 import br.edu.ifpe.garanhuns.projetoProvaPc.fachada.Fachada;
 import java.util.HashSet;
@@ -28,8 +25,17 @@ public class ProvaBuilder {
     private String enunciado;
     private int pontuacao;
     private Set<Afirmacao> afirmacoes = new HashSet<Afirmacao>();
+    private Professor prof;
     
     public ProvaBuilder() {
+    }
+
+    public Professor getProfessor() {
+        return prof;
+    }
+
+    public void setProfessor(Professor prof) {
+        this.prof = prof;
     }
     
     public void setTema(String tema) {
@@ -55,7 +61,7 @@ public class ProvaBuilder {
     }
     
     public Prova build() {
-        Prova p = new Prova(Fachada.getInstance().getProvaProxId(), tema);
+        Prova p = new Prova(Fachada.getInstance().getProvaProxId(), tema, prof);
         for (QuestaoMultiplaEscolha questaoMultiplaEscolha : questoes) {
             p.add(questaoMultiplaEscolha);
         }

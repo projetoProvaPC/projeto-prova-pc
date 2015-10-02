@@ -4,11 +4,9 @@ import java.util.Objects;
 
 public class Aluno {
     
-    private String nome;
     private String matricula;
 
-    public Aluno(String nome, String matricula) {
-        this.nome = nome;
+    public Aluno(String matricula) {
         this.matricula = matricula;
     }
 
@@ -26,16 +24,9 @@ public class Aluno {
         }
         return true;
     }
-    public String getNome() {
-        return nome;
-    }
 
     public String getMatricula() {
         return matricula;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public void setMatricula(String matricula) {

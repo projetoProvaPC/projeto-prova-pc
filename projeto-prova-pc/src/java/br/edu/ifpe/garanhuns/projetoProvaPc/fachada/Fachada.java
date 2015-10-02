@@ -7,12 +7,14 @@
 package br.edu.ifpe.garanhuns.projetoProvaPc.fachada;
 
 import br.edu.ifpe.garanhuns.projetoProvaPc.builders.ProvaBuilder;
+import br.edu.ifpe.garanhuns.projetoProvaPc.dominio.AplicacaoDaProva;
 import br.edu.ifpe.garanhuns.projetoProvaPc.dominio.Professor;
 import br.edu.ifpe.garanhuns.projetoProvaPc.dominio.Prova;
 import br.edu.ifpe.garanhuns.projetoProvaPc.estrutura.repositorios.Repositorio;
 import br.edu.ifpe.garanhuns.projetoProvaPc.estrutura.repositorios.RepositorioMemoria;
 import br.edu.ifpe.garanhuns.projetoProvaPc.excecoes.AutenticacaoFalhouException;
 import br.edu.ifpe.garanhuns.projetoProvaPc.excecoes.IdNaoDisponivelException;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,6 +24,8 @@ import java.util.logging.Logger;
  * @author lucas
  */
 public class Fachada {
+    
+    private RandomString rs = new RandomString(5);
     
     private static Fachada instance = null;
     
@@ -66,8 +70,8 @@ public class Fachada {
         return professores.recuperar(codigo);
     }
 
-    public void adicionarProfessor(String nome, int siap, String senha) {
-        Professor p = new Professor(nome,siap,senha);
+    public void adicionarProfessor(int siap, String senha) {
+        Professor p = new Professor(siap,senha);
         try {
             professores.adicionar(p);
         } catch (Exception e) { // não tem muito o que fazer kkk depois concertamos!
@@ -75,8 +79,26 @@ public class Fachada {
         }
     }
 
-    public List<Prova> recuperarTodasAsProvas() {
-        return provas.recuperar();
+    public List<Prova> recuperarProvas(Professor prof) {
+        List<Prova> provas = new LinkedList<>();
+        
+        for (Prova prova : this.provas.recuperar()) {
+            if(prova.getProfessor().equals(prof)) 
+                provas.add(prova);
+        }
+        return provas;
+    }
+
+    public AplicacaoDaProva criarAplicacaoProva(Prova p, String turma) {
+        return new AplicacaoDaProva(p, gerarSenha(), turma);
+    }
+
+    private String gerarSenha() {
+        return rs.nextString();
+    }
+
+    public AplicacaoDaProva responderProva(String senha) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

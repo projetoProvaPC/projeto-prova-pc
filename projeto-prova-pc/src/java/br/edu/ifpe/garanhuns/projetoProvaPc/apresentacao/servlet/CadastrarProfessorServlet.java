@@ -34,16 +34,14 @@ public class CadastrarProfessorServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            
-            String nome = request.getParameter("nome");
             int siap = Integer.parseInt(request.getParameter("siap"));
             String senha1 = request.getParameter("senha1");
             String senha2 = request.getParameter("senha2");
             
             if(senha1==null || !senha1.equals(senha2)) throw new Exception();
             
-            Fachada.getInstance().adicionarProfessor(nome,siap,senha1);
-            response.sendRedirect("index.jsp");
+            Fachada.getInstance().adicionarProfessor(siap,senha1);
+            
         } catch (Exception e) {
             response.sendRedirect("pagina_erro.jsp");
         }

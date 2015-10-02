@@ -8,9 +8,12 @@ public class Prova implements Persistivel<Prova>{
     private int id;
     private String tema;
     private ArrayList<Questao> questoes = new ArrayList<Questao>();
+    private Professor professor;
 
-    public Prova(int id, String tema) {
+    public Prova(int id, String tema, Professor professor) {
+	this.id = id;
         this.tema = tema;
+	this.professor = professor;
     }
     
     public String getTema() {

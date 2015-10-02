@@ -15,12 +15,18 @@ import br.edu.ifpe.garanhuns.projetoProvaPc.excecoes.AutenticacaoFalhouException
  */
 public class Autenticacao {
     
+    private Professor professor;
+    
     public Autenticacao(int codigo, String senha) throws AutenticacaoFalhouException{
         Fachada f = Fachada.getInstance();
-        Professor p = f.recuperarProfessor(codigo);
-        if(!p.testarSenha(senha)) {
+        this.professor = f.recuperarProfessor(codigo);
+        if(!this.professor.testarSenha(senha)) {
             throw new AutenticacaoFalhouException();
         }
     }
 
+    public Professor getProfessor() {
+        return professor;
+    }
+    
 }

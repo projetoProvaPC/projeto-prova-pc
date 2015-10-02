@@ -4,22 +4,12 @@ import br.edu.ifpe.garanhuns.projetoProvaPc.estrutura.repositorios.Persistivel;
 
 public class Professor implements Persistivel<Professor> {
 
-    private String nome;
     private int siap;
     private String senha;
 
-    public Professor(String nome, int siap, String senha) {
-        this.nome = nome;
+    public Professor(int siap, String senha) {
         this.siap = siap;
         this.senha = senha;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public int getSiap() {
