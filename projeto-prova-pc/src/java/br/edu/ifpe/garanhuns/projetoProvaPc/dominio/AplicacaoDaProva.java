@@ -1,6 +1,7 @@
 package br.edu.ifpe.garanhuns.projetoProvaPc.dominio;
 
 
+import br.edu.ifpe.garanhuns.projetoProvaPc.estrutura.repositorios.Persistivel;
 import java.util.Date;
 
 /*
@@ -13,8 +14,9 @@ import java.util.Date;
  *
  * @author 20141D12GR0416
  */
-public class AplicacaoDaProva {
+public class AplicacaoDaProva implements Persistivel<AplicacaoDaProva> {
     
+    private int id;
     private Prova prova;
     private Date data;
     private String senha;
@@ -22,7 +24,8 @@ public class AplicacaoDaProva {
 
     // essa senha tem que ser gerada automaticamente
     // vamos ver depois como fazer isso
-    public AplicacaoDaProva(Prova prova, String senha, String turma) {
+    public AplicacaoDaProva(int id, Prova prova, String senha, String turma) {
+        this.id = id;
         this.senha = senha;
         this.turma = turma;
         this.prova = prova;
@@ -54,6 +57,20 @@ public class AplicacaoDaProva {
 
     public Object getTema() {
         return this.prova.getTema();
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public void alterar(AplicacaoDaProva t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Professor getProfessor() {
+        return this.prova.getProfessor();
     }
     
     

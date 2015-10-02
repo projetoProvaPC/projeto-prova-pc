@@ -1,16 +1,16 @@
-package br.edu.ifpe.garanhuns.projetoProvaPc.apresentacao.servlet;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package br.edu.ifpe.garanhuns.projetoProvaPc.apresentacao.servlet;
 
-import br.edu.ifpe.garanhuns.projetoProvaPc.builders.ProvaBuilder;
+import br.edu.ifpe.garanhuns.projetoProvaPc.dominio.AplicacaoDaProva;
 import br.edu.ifpe.garanhuns.projetoProvaPc.fachada.Autenticacao;
 import br.edu.ifpe.garanhuns.projetoProvaPc.fachada.Fachada;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,8 +21,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author 20141D12GR0122
  */
-@WebServlet(urlPatterns = {"/ConstrucaoProvaServlet"})
-public class ConstrucaoProvaServlet extends HttpServlet {
+@WebServlet(name = "RecuperarAplicacaoDeProvaServlet", urlPatterns = {"/RecuperarAplicacaoDeProvaServlet"})
+public class RecuperarAplicacaoDeProvaServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,8 +35,9 @@ public class ConstrucaoProvaServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Fachada.getInstance().adicionar((Autenticacao) request.getSession().getAttribute("autenticacao"), (ProvaBuilder) request.getSession().getAttribute("prova_builder"));
-        response.sendRedirect("index_professor.jsp");
+        Autenticacao a = (Autenticacao) request.getSession().getAttribute("autenticacao");
+        List<AplicacaoDaProva> as = Fachada.getInstance().recuperarAplicaoDaProva(a);
+        response.sendRedirect("apresente_aplicacao_da_prova.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

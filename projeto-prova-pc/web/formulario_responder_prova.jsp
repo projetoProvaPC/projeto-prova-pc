@@ -12,10 +12,11 @@
         <title>JSP Page</title>
     </head>
     <body>
-        Matricula: <input type="text" name="Matricula"> <br/>
-        Senha: <input type="password" name="pwd"> <br/>
-        
-        <a href="ResponderProvaServlet">Responder</a> <br/>
+        <form method="post" action="ResponderProvaServlet">
+            Matricula: <input type="text" name="Matricula"> <br/>
+            Senha: <input type="password" name="pwd"> <br/>
+            <input type="submit" value="Iniciar"/>
+        </form>
 
     </body>
 </html>

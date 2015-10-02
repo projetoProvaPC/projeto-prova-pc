@@ -13,6 +13,10 @@
     </head>
     <body>
         <h1>A prova!</h1>
-        <a href="SubmeteRespostaDaProvaServlet">Terminei</a> <br/>
+        
+        <form method="post" action="SubmeteRespostaDaProvaServlet">
+            <input type="submit"  value="Terminei"/>
+        </form>
+        
     </body>
 </html>

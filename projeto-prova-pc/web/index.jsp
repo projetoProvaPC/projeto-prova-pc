@@ -14,6 +14,6 @@
     <body>
         <a href="login_professor.jsp">login</a> <br/>
         <a href="formulario_cadastrar_professor.jsp">cadastrar professor</a>
-        <!-- aluno.responder prova -->
+        <a href="formulario_responder_prova.jsp">responder uma prova</a>
     </body>
 </html>

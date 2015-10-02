@@ -11,6 +11,7 @@ import br.edu.ifpe.garanhuns.projetoProvaPc.excecoes.IdNaoDisponivelException;
 /**
  *
  * @author lucas
+ * @param <Tipo>
  */
 public interface Repositorio<Tipo extends Persistivel> {
     
