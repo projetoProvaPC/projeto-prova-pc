@@ -15,7 +15,7 @@
         <% // if(session.getAttribute("autenticacao")==null) response.sendRedirect("login.jsp"); %>
         <h1>Ola professor!</h1>
                 <a href="formulario_prova.jsp">Criar Prova</a> <br/>
-                <a href="provaAplicada.jsp">Aplicar prova:<a/> <br/>
+                <a href="RecuperarTodasAsProvasServlet">Aplicar prova:<a/> <br/>
                 <a href="RecuperarAplicacaoDeProvaServlet">Ver Resultados:<a/><br/>
     </body>
 </html>

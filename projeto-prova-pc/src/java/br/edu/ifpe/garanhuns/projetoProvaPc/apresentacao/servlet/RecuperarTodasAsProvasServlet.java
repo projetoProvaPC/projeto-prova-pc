@@ -42,7 +42,7 @@ public class RecuperarTodasAsProvasServlet extends HttpServlet {
         List<Prova> provas = Fachada.getInstance().recuperarTodasAsProvas(a.getProfessor());
         request.getSession().setAttribute("provas", provas);
         
-        
+        response.sendRedirect("selecionar_prova_para_aplicar.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

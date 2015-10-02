@@ -92,13 +92,14 @@ public class Fachada {
     }
 
     public List<Prova> recuperarTodasAsProvas(Professor professor) {
-        List<Prova> provas = new LinkedList<>();
+        /*List<Prova> provas = new LinkedList<>();
         
         for (Prova prova : this.provas.recuperar()) {
             if(prova.getProfessor().equals(professor)) 
                 provas.add(prova);
         }
-        return provas;
+        return provas;*/
+        return this.provas.recuperar();
     }
     
 }

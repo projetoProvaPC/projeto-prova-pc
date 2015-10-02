@@ -14,7 +14,6 @@
     <body>
         <h1>Cadastro de professores</h1>
         <form method="post" action="CadastrarProfessorServlet">
-            Nome: <input type="text" name="nome"/> <br/>
             Siap: <input type="number" name="siap"/> <br/>
             Senha: <input type="password" name="senha1"/> <br/>
             Repetir Senha: <input type="password" name="senha2"/> <br/>

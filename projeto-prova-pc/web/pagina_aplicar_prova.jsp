@@ -13,6 +13,12 @@
     </head>
     <body>
         
+        <% if (session.getAttribute("turma")==null) {
+            session.setAttribute("exception", new Exception("turma is null on pagina_aplica_prova.jso"));
+            response.sendRedirect("pagina_erro.jsp");
+            return;
+        }%>
+        
          tema:<%=session.getAttribute("tema")%> <br>        
          turma:<%=session.getAttribute("turma")%> <br> 
          senha:<%=session.getAttribute("senha")%> <br>

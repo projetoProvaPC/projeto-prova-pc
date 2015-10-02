@@ -8,7 +8,7 @@
 <%@page import="java.util.List"%>
 <%@page import="br.edu.ifpe.garanhuns.projetoProvaPc.dominio.Prova"%>
 <%@page import="br.edu.ifpe.garanhuns.projetoProvaPc.dominio.Prova"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" errorPage="pagina_erro.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -26,5 +26,8 @@
         %>
         <%=p.getTema()%>: <a href="PreparaFormularioAplicarProvaServlet?i=<%=i%>">Aplicar</a>
         <% } %>
+        
+        <%=provas.size()%>
+        
     </body>
 </html>

@@ -12,7 +12,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <a href="login_professor.jsp">login</a>
+        <a href="login_professor.jsp">login</a> <br/>
         <a href="formulario_cadastrar_professor.jsp">cadastrar professor</a>
+        <!-- aluno.responder prova -->
     </body>
 </html>

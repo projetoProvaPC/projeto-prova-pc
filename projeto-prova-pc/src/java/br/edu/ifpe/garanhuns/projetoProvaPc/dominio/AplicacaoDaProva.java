@@ -18,13 +18,13 @@ public class AplicacaoDaProva {
     private Prova prova;
     private Date data;
     private String senha;
-    private String disciplina;
+    private String turma;
 
     // essa senha tem que ser gerada automaticamente
     // vamos ver depois como fazer isso
-    public AplicacaoDaProva(Prova prova, String senha, String disciplina) {
+    public AplicacaoDaProva(Prova prova, String senha, String turma) {
         this.senha = senha;
-        this.disciplina = disciplina;
+        this.turma = turma;
         this.prova = prova;
     }
 
@@ -44,16 +44,18 @@ public class AplicacaoDaProva {
         this.senha = senha;
     }
 
-    public String getDisciplina() {
-        return disciplina;
+    public String getTurma() {
+        return turma;
     }
 
-    public void setDisciplina(String disciplina) {
-        this.disciplina = disciplina;
+    public Prova getProva() {
+        return prova;
+    }
+
+    public Object getTema() {
+        return this.prova.getTema();
     }
     
-    public String getTurma() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
 }

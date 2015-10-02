@@ -36,9 +36,15 @@ public class AplicarProvaServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Prova p = (Prova) session.getAttribute("prova");
-        AplicacaoDaProva a = Fachada.getInstance().criarAplicacaoProva(p,request.getParameter("turma"));
+        String turma = request.getParameter("turma");
+        if(turma==null) {
+            session.setAttribute("exception", new Exception("Turma is null on AplicarProvaServlet.java"));
+            response.sendRedirect("pagina_erro.jsp");
+            return;
+        }
+        AplicacaoDaProva a = Fachada.getInstance().criarAplicacaoProva(p,turma);
         // tema, turma e senha
-        session.setAttribute("tema", p.getTema());
+        session.setAttribute("tema", a.getTema());
         session.setAttribute("turma", a.getTurma());
         session.setAttribute("senha", a.getSenha());
         response.sendRedirect("pagina_aplicar_prova.jsp");
