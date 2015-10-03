@@ -6,11 +6,14 @@
 package br.edu.ifpe.garanhuns.projetoProvaPc.apresentacao.servlet;
 
 import br.edu.ifpe.garanhuns.projetoProvaPc.dominio.AplicacaoDaProva;
+import br.edu.ifpe.garanhuns.projetoProvaPc.excecoes.AutenticacaoFalhouException;
 import br.edu.ifpe.garanhuns.projetoProvaPc.fachada.Autenticacao;
 import br.edu.ifpe.garanhuns.projetoProvaPc.fachada.Fachada;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,7 +39,11 @@ public class RecuperarAplicacaoDeProvaServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Autenticacao a = (Autenticacao) request.getSession().getAttribute("autenticacao");
-        List<AplicacaoDaProva> as = Fachada.getInstance().recuperarAplicaoDaProva(a);
+        try {
+            List<AplicacaoDaProva> as = Fachada.getInstance().recuperarAplicaoDaProva(a);
+        } catch (AutenticacaoFalhouException ex) {
+            response.sendRedirect("pagina_erro.jsp");
+        }
         response.sendRedirect("apresente_aplicacao_da_prova.jsp");
     }
 

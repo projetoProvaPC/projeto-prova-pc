@@ -4,7 +4,9 @@
     Author     : lucas
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="br.edu.ifpe.garanhuns.projetoProvaPc.dominio.AplicacaoDaProva"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" errorPage="pagina_erro.jsp"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,5 +15,14 @@
     </head>
     <body>
         <h1>Finja qie aqui tem uma tabela com resultados</h1>
+        <p>Prova, turma, data</p>
+        <% 
+            List<AplicacaoDaProva> aps = (List<AplicacaoDaProva>) session.getAttribute("aplicacoes_das_provas");
+            for(int i=0;i<aps.size();i++) { 
+                AplicacaoDaProva ap = aps.get(i);
+        %>
+        <%=ap.getTema()%>, <%=ap.getTurma()%>, <%=ap.getData()%>, <a href="ApresentaRespostasProvaServlet?ap=<%=i%>">resultados</a> <br/>
+        <%  }
+        %>
     </body>
 </html>

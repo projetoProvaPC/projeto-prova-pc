@@ -118,7 +118,8 @@ public final class Fachada {
         return provas;
     }
 
-    public List<AplicacaoDaProva> recuperarAplicaoDaProva(Autenticacao a) {
+    public List<AplicacaoDaProva> recuperarAplicaoDaProva(Autenticacao a) throws AutenticacaoFalhouException {
+        if(a==null) throw new AutenticacaoFalhouException();
         List<AplicacaoDaProva> provas = new LinkedList<>();
         Professor professor = a.getProfessor();
         
@@ -127,6 +128,10 @@ public final class Fachada {
                 provas.add(prova);
         }
         return provas;
+    }
+
+    public Object recuperarRespostasAplicacaoDaProva(AplicacaoDaProva ap) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     
