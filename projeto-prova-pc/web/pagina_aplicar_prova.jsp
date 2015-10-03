@@ -22,6 +22,7 @@
          tema:<%=session.getAttribute("tema")%> <br>        
          turma:<%=session.getAttribute("turma")%> <br> 
          senha:<%=session.getAttribute("senha")%> <br>
+         <a href="index_professor.jsp">Voltar</a>
          
     </body>
 </html>
