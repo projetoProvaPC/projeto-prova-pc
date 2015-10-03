@@ -12,6 +12,7 @@ import br.edu.ifpe.garanhuns.projetoProvaPc.estrutura.repositorios.Repositorio;
 import br.edu.ifpe.garanhuns.projetoProvaPc.estrutura.repositorios.RepositorioMemoria;
 import br.edu.ifpe.garanhuns.projetoProvaPc.excecoes.AutenticacaoFalhouException;
 import br.edu.ifpe.garanhuns.projetoProvaPc.excecoes.IdNaoDisponivelException;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
@@ -45,6 +46,9 @@ public final class Fachada {
     private final Repositorio<Prova> provas = new RepositorioMemoria<>();
     private final Repositorio<Professor> professores = new RepositorioMemoria<>();
     private final Repositorio<AplicacaoDaProva> aplicacoes_das_provas = new RepositorioMemoria<>();
+    
+    // Isso aqui tem que ser melhorado!
+    private final HashMap <String,AplicacaoDaProva> senhas = new HashMap<>();
    
     // Os métodos hahahaha
     public Autenticacao autenticar(int codigo, String senha) throws AutenticacaoFalhouException {
@@ -88,6 +92,7 @@ public final class Fachada {
         AplicacaoDaProva a = new AplicacaoDaProva(this.aplicacoes_das_provas.proxId(), p, gerarSenha(), turma);
         try {
             this.aplicacoes_das_provas.adicionar(a);
+            this.senhas.put(a.getSenha(), a);
         } catch (IdNaoDisponivelException ex) {
             Logger.getLogger(Fachada.class.getName()).log(Level.SEVERE, null, ex); // mudar
         }
@@ -99,7 +104,7 @@ public final class Fachada {
     }
 
     public AplicacaoDaProva responderProva(String matricula, String senha) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.senhas.get(senha);
     }
 
     public List<Prova> recuperarTodasAsProvas(Autenticacao a) {
