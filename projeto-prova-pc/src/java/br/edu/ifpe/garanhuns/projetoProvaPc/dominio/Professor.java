@@ -1,6 +1,6 @@
 package br.edu.ifpe.garanhuns.projetoProvaPc.dominio;
 
-import br.edu.ifpe.garanhuns.projetoProvaPc.estrutura.repositorios.Persistivel;
+import br.edu.ifpe.garanhuns.projetoProvaPc.repositorios.Persistivel;
 
 public class Professor implements Persistivel<Professor> {
 

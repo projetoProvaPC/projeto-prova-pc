@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package br.edu.ifpe.garanhuns.projetoProvaPc.estrutura.repositorios;
+package br.edu.ifpe.garanhuns.projetoProvaPc.repositorios;
 
 /**
  *

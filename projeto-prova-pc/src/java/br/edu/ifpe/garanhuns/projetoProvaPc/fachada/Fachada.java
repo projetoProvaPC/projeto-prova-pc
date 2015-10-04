@@ -8,8 +8,8 @@ package br.edu.ifpe.garanhuns.projetoProvaPc.fachada;
 
 import br.edu.ifpe.garanhuns.projetoProvaPc.builders.ProvaBuilder;
 import br.edu.ifpe.garanhuns.projetoProvaPc.dominio.*;
-import br.edu.ifpe.garanhuns.projetoProvaPc.estrutura.repositorios.Repositorio;
-import br.edu.ifpe.garanhuns.projetoProvaPc.estrutura.repositorios.RepositorioMemoria;
+import br.edu.ifpe.garanhuns.projetoProvaPc.repositorios.Repositorio;
+import br.edu.ifpe.garanhuns.projetoProvaPc.repositorios.RepositorioMemoria;
 import br.edu.ifpe.garanhuns.projetoProvaPc.excecoes.AutenticacaoFalhouException;
 import br.edu.ifpe.garanhuns.projetoProvaPc.excecoes.IdNaoDisponivelException;
 import java.util.HashMap;
