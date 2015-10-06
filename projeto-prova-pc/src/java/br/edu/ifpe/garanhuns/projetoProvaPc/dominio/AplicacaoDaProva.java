@@ -3,6 +3,8 @@ package br.edu.ifpe.garanhuns.projetoProvaPc.dominio;
 
 import br.edu.ifpe.garanhuns.projetoProvaPc.repositorios.Persistivel;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -21,6 +23,7 @@ public class AplicacaoDaProva implements Persistivel<AplicacaoDaProva> {
     private Date data;
     private String senha;
     private String turma;
+    List<RespostaProva> respostas = new LinkedList<>();
 
     // essa senha tem que ser gerada automaticamente
     // vamos ver depois como fazer isso
@@ -71,6 +74,14 @@ public class AplicacaoDaProva implements Persistivel<AplicacaoDaProva> {
 
     public Professor getProfessor() {
         return this.prova.getProfessor();
+    }
+
+    public List<RespostaProva> recuperarRespostas() {
+        List<RespostaProva> rc = new LinkedList<>();
+        for (RespostaProva respostaProva : respostas) {
+            rc.add(respostaProva);
+        }
+        return rc;
     }
     
     

@@ -14,7 +14,7 @@
     <body>
         <form method="post" action="ResponderProvaServlet">
             Matricula: <input type="text" name="Matricula"> <br/>
-            Senha: <input type="text" name="pwd"> <br/>
+            Senha: <input type="text" name="senha"> <br/>
             <input type="submit" value="Iniciar"/>
         </form>
 

@@ -21,7 +21,7 @@ public class Autenticacao {
         Fachada f = Fachada.getInstance();
         this.professor = f.recuperarProfessor(codigo);
         if(!this.professor.testarSenha(senha)) {
-            throw new AutenticacaoFalhouException();
+            throw new AutenticacaoFalhouException("Autenticacao");
         }
     }
 

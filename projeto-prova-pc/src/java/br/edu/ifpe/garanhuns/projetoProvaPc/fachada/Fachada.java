@@ -8,12 +8,13 @@ package br.edu.ifpe.garanhuns.projetoProvaPc.fachada;
 
 import br.edu.ifpe.garanhuns.projetoProvaPc.builders.ProvaBuilder;
 import br.edu.ifpe.garanhuns.projetoProvaPc.dominio.*;
-import br.edu.ifpe.garanhuns.projetoProvaPc.repositorios.Repositorio;
-import br.edu.ifpe.garanhuns.projetoProvaPc.repositorios.RepositorioMemoria;
 import br.edu.ifpe.garanhuns.projetoProvaPc.excecoes.AutenticacaoFalhouException;
 import br.edu.ifpe.garanhuns.projetoProvaPc.excecoes.IdNaoDisponivelException;
+import br.edu.ifpe.garanhuns.projetoProvaPc.repositorios.Repositorio;
+import br.edu.ifpe.garanhuns.projetoProvaPc.repositorios.RepositorioAplicacaoDaProva;
+import br.edu.ifpe.garanhuns.projetoProvaPc.repositorios.RepositorioAplicacaoDaProvaMemoria;
+import br.edu.ifpe.garanhuns.projetoProvaPc.repositorios.RepositorioMemoria;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,9 +44,8 @@ public final class Fachada {
     
     //  Repositorios
     private String tipo;
-    private final Repositorio<Prova> provas = new RepositorioMemoria<>();
     private final Repositorio<Professor> professores = new RepositorioMemoria<>();
-    private final Repositorio<AplicacaoDaProva> aplicacoes_das_provas = new RepositorioMemoria<>();
+    private final RepositorioAplicacaoDaProva aplicacoes_das_provas = new RepositorioAplicacaoDaProvaMemoria();
     
     // Isso aqui tem que ser melhorado!
     private final HashMap <String,AplicacaoDaProva> senhas = new HashMap<>();
@@ -54,29 +54,17 @@ public final class Fachada {
     public Autenticacao autenticar(int codigo, String senha) throws AutenticacaoFalhouException {
         return new Autenticacao(codigo,senha);
     }
-
-    private void adicionar(Prova p) throws IdNaoDisponivelException {
-        provas.adicionar(p);
-    }
-
-    public int getProvaProxId() {
-        return provas.proxId();
-    }
     
     public ProvaBuilder getProvaBuilder() {
         return new ProvaBuilder();
     }
  
-    public void adicionar (Autenticacao a, ProvaBuilder pb) {
-        try {
-            if (a != null ) {
-                pb.setProfessor(a.getProfessor());
-                if (pb!=null) 
-                    provas.adicionar(pb.build());
-            }
-        } catch (IdNaoDisponivelException ex) {
-            Logger.getLogger(Fachada.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void adicionar (Autenticacao a, ProvaBuilder pb) throws AutenticacaoFalhouException {
+        if(a==null) throw new AutenticacaoFalhouException("Fachada::adicionar::params:Autenticacao");
+        
+        pb.setProfessor(a.getProfessor());
+        
+        a.getProfessor().adicionarProva(pb.build());
     }
 
     public Professor recuperarProfessor(int siap) {
@@ -89,10 +77,11 @@ public final class Fachada {
     }
 
     public AplicacaoDaProva criarAplicacaoProva(Prova p, String turma) {
-        AplicacaoDaProva a = new AplicacaoDaProva(this.aplicacoes_das_provas.proxId(), p, gerarSenha(), turma);
+        AplicacaoDaProva a = null;
         try {
+            a = new AplicacaoDaProva(this.aplicacoes_das_provas.proxId(), p, gerarSenha(), turma);
             this.aplicacoes_das_provas.adicionar(a);
-            this.senhas.put(a.getSenha(), a);
+            p.getProfessor().adicionarAplicacaoDaProva(a);
         } catch (IdNaoDisponivelException ex) {
             Logger.getLogger(Fachada.class.getName()).log(Level.SEVERE, null, ex); // mudar
         }
@@ -104,34 +93,20 @@ public final class Fachada {
     }
 
     public AplicacaoDaProva responderProva(String matricula, String senha) {
-        return this.senhas.get(senha);
+        return this.aplicacoes_das_provas.recuperarPorSenha(senha);
     }
 
     public List<Prova> recuperarTodasAsProvas(Autenticacao a) {
-        List<Prova> provas = new LinkedList<>();
-        Professor professor = a.getProfessor();
-        
-        for (Prova prova : this.provas.recuperar()) {
-            if(prova.getProfessor().equals(professor)) 
-                provas.add(prova);
-        }
-        return provas;
+        return a.getProfessor().recuperarTodasProva();
     }
 
     public List<AplicacaoDaProva> recuperarAplicaoDaProva(Autenticacao a) throws AutenticacaoFalhouException {
-        if(a==null) throw new AutenticacaoFalhouException();
-        List<AplicacaoDaProva> provas = new LinkedList<>();
-        Professor professor = a.getProfessor();
-        
-        for (AplicacaoDaProva prova : this.aplicacoes_das_provas.recuperar()) {
-            if(prova.getProfessor().equals(professor)) 
-                provas.add(prova);
-        }
-        return provas;
+        if(a==null) throw new AutenticacaoFalhouException("Fachada::recuperarAplicacaoDaProva");
+        return a.getProfessor().recuperarTodasAplicacaoDeProva();
     }
 
-    public Object recuperarRespostasAplicacaoDaProva(AplicacaoDaProva ap) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<RespostaProva> recuperarRespostasAplicacaoDaProva(AplicacaoDaProva ap) {
+        return ap.recuperarRespostas();
     }
     
     

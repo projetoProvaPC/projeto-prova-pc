@@ -40,7 +40,8 @@
         
         <form method="post" action="SubmeteRespostaDaProvaServlet">
             
-            <% for(q = (QuestaoMultiplaEscolha) qs.next() ; qs.hasNext() ; q = (QuestaoMultiplaEscolha) qs.next() ) { %>
+            <% while ( qs.hasNext() ) { %>
+                <% q = (QuestaoMultiplaEscolha) qs.next() ; %>
                 <% qn++; %>
                 <% ac = 'a'; %>
                 

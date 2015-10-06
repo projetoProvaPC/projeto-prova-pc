@@ -11,5 +11,9 @@ package br.edu.ifpe.garanhuns.projetoProvaPc.excecoes;
  * @author lucas
  */
 public class AutenticacaoFalhouException extends Exception {
+
+    public AutenticacaoFalhouException(String fachadaadicionarparamsAutenticacao) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

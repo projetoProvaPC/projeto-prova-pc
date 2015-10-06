@@ -7,10 +7,12 @@ package br.edu.ifpe.garanhuns.projetoProvaPc.apresentacao.servlet;
  */
 
 import br.edu.ifpe.garanhuns.projetoProvaPc.builders.ProvaBuilder;
+import br.edu.ifpe.garanhuns.projetoProvaPc.excecoes.AutenticacaoFalhouException;
 import br.edu.ifpe.garanhuns.projetoProvaPc.fachada.Autenticacao;
 import br.edu.ifpe.garanhuns.projetoProvaPc.fachada.Fachada;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,8 +37,12 @@ public class ConstrucaoProvaServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Fachada.getInstance().adicionar((Autenticacao) request.getSession().getAttribute("autenticacao"), (ProvaBuilder) request.getSession().getAttribute("prova_builder"));
-        response.sendRedirect("index_professor.jsp");
+        try {
+            Fachada.getInstance().adicionar((Autenticacao) request.getSession().getAttribute("autenticacao"), (ProvaBuilder) request.getSession().getAttribute("prova_builder"));
+            response.sendRedirect("index_professor.jsp");
+        } catch (AutenticacaoFalhouException ex) {
+            response.sendRedirect("pagina_erro.jsp");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

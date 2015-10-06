@@ -10,10 +10,9 @@ public class Prova implements Persistivel<Prova>{
     private ArrayList<Questao> questoes = new ArrayList<Questao>();
     private Professor professor;
 
-    public Prova(int id, String tema, Professor professor) {
+    public Prova(int id, String tema) {
 	this.id = id;
         this.tema = tema;
-	this.professor = professor;
     }
     
     public String getTema() {
@@ -54,6 +53,9 @@ public class Prova implements Persistivel<Prova>{
         return professor;
     }
 
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
+    }
     
     
 }

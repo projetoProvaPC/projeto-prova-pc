@@ -63,10 +63,11 @@ public class ProvaBuilder {
     }
     
     public Prova build() {
-        Prova p = new Prova(Fachada.getInstance().getProvaProxId(), tema, prof);
+        Prova p = new Prova(this.prof.proximoIdProva(), tema);
         for (QuestaoMultiplaEscolha questaoMultiplaEscolha : questoes) {
             p.add(questaoMultiplaEscolha);
         }
+        prof.adicionarProva(p);
         return p;
     }
     
