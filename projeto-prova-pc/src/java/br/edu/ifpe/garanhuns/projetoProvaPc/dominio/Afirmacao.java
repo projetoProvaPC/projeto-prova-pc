@@ -1,12 +1,25 @@
 package br.edu.ifpe.garanhuns.projetoProvaPc.dominio;
 
-// comentário
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+// comentário
+@Entity
+@Table ( name = "afirmacao" )
 public class Afirmacao {
+    
+    @Id
+    @Column
+    private int id;
+    @Column
     private String texto;
+    @Column
     private boolean veracidade;
     
-    public Afirmacao(String texto, boolean veracidade){
+    public Afirmacao(int id, String texto, boolean veracidade){
+        this.id = id;
         this.texto = texto;
         this.veracidade = veracidade;
     }
@@ -26,5 +39,11 @@ public class Afirmacao {
     public void setVeracidade(boolean veracidade) {
         this.veracidade = veracidade;
     }
+
+    public int getId() {
+        return id;
+    }
+ 
+    
     
 }

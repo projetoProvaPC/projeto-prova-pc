@@ -13,18 +13,33 @@ package br.edu.ifpe.garanhuns.projetoProvaPc.dominio;
  * @author 20141D12GR0416
  */
 import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.*;
 
 // tem que ser abstract por que não pode ter uma questão que não seja nem de V/F
 // nem de multipla escolha
+@MappedSuperclass
 public abstract class Questao {
+    
+    @Id
+    @Column
+    private int id;
+    @Column
     private String enunciado;
+    @Column
     private int pontuacao;
-    private final ArrayList<Afirmacao> afirmacoes;
+    @OneToMany
+    private List<Afirmacao> afirmacoes = new ArrayList<>();
 
-    public Questao(String enunciado, int pontuacao) {
+    public Questao(int id, String enunciado, int pontuacao) {
+        this.id = id;
         this.enunciado = enunciado;
         this.pontuacao = pontuacao;
-        this.afirmacoes = new ArrayList<>();
+    }
+    
+    public Questao(int id, String enunciado, int pontuacao, List<Afirmacao> afirmacoes) {
+        this(id,enunciado,pontuacao);
+        this.afirmacoes = afirmacoes;
     }
     
      public String getEnunciado() {
@@ -56,5 +71,10 @@ public abstract class Questao {
     protected Afirmacao getAfirmacao(int i) {
         return afirmacoes.get(i);
     }
+
+    public int getId() {
+        return id;
+    }
     
+   
 }

@@ -1,14 +1,19 @@
 package br.edu.ifpe.garanhuns.projetoProvaPc.dominio;
 
+import javax.persistence.*;
+
 /**
  * @author lucas
  */
+@Entity
+@Table (name = "RespostaQuestaoVerdadeiroOuFalso")
 public class RespostaQuestaoVerdadeiroOuFalso extends RespostaQuestao<QuestaoVerdadeiroOuFalso>{
 
+    
     private boolean [] resposta;
 
-    public RespostaQuestaoVerdadeiroOuFalso(QuestaoVerdadeiroOuFalso questao, boolean [] resposta) throws Exception {
-        super(questao);
+    public RespostaQuestaoVerdadeiroOuFalso(int id, QuestaoVerdadeiroOuFalso questao, boolean [] resposta) throws Exception {
+        super(id,questao);
     }
     
     @Override

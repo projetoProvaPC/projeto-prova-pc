@@ -1,17 +1,23 @@
 package br.edu.ifpe.garanhuns.projetoProvaPc.dominio;
 
+import javax.persistence.*;
+
 /** * @author lucas
  */
+@Entity
+@Table ( name = "QustãoMultiplaEscolha")
 public class QuestaoMultiplaEscolha extends Questao {
 
     // qual das 5 é a correta? (de 0 a 4, inclusive)
+    @Column
     private int correta;
     
     // O contrutor aceita um array de 5 alternativas com 4 falsas e uma correta
     // Em qualquer outro caso lança uma exceção
-    public QuestaoMultiplaEscolha(String enunciado, int pontuacao, 
+    public QuestaoMultiplaEscolha( int id, String enunciado, int pontuacao, 
             Afirmacao [] alternativas) throws Exception {
-        super(enunciado, pontuacao);
+        super(id,enunciado, pontuacao);
+       
         
         // Devem ter 5 alternativas
         if(alternativas.length!=5) 

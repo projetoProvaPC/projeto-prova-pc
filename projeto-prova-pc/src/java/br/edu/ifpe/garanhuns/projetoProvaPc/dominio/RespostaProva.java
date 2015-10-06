@@ -3,6 +3,7 @@ package br.edu.ifpe.garanhuns.projetoProvaPc.dominio;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import javax.persistence.*;
 
 /**
  * @author lucas
@@ -15,17 +16,27 @@ import java.util.Objects;
 //Essa classe tem uma função muito importante: no final, é ela quem 
 
 // Ou RespostasAlunoProva
+@Table (name = "RespostaProva")
+@Entity
 public class RespostaProva {
 
+    @Id
     // São a resposta de uma aluno
+    private int id;
+    @Column
     private String aluno;
     // Em uma determinada aplicação da prova
+    @ManyToOne
     private AplicacaoDaProva prova; //  isso também identifica a prova
     // Relaciona questoes com as repostas para elas!
-    private final Map<Questao,RespostaQuestao> respostas;
+    @MapKey
+    @MapKeyClass(Questao.class)
+    @OneToMany
+    private final Map<QuestaoMultiplaEscolha,RespostaQuestaoMultiplaEscolha> respostas;
 
     // Construtor simples
-    public RespostaProva(String aluno, AplicacaoDaProva prova) {
+    public RespostaProva(int id, String aluno, AplicacaoDaProva prova) {
+        this.id= id;
         this.aluno = aluno;
         this.prova = prova;
         this.respostas = new HashMap<>();
@@ -60,13 +71,13 @@ public class RespostaProva {
     // Adiciona a respota a uma pergunta.
     // Na verdade, ele substitui, porque todas as perguntas já foram
     // adicionadas.
-    public void adiconar(Questao q, RespostaQuestao r) {
+    public void adiconar(QuestaoMultiplaEscolha q, RespostaQuestaoMultiplaEscolha r) {
         respostas.replace(q, r);
     }
 
     // Remove a respota
     // Na verdade, apenas substitui por NULL.
-    public RespostaQuestao remover(Questao q) {
+    public RespostaQuestao remover(QuestaoMultiplaEscolha q) {
         return respostas.replace(q, null);
     }
     
@@ -103,6 +114,10 @@ public class RespostaProva {
             return false;
         }
         return true;
+    }
+
+    public int getId() {
+        return id;
     }
     
     

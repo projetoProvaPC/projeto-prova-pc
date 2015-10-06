@@ -3,12 +3,19 @@ package br.edu.ifpe.garanhuns.projetoProvaPc.dominio;
 import br.edu.ifpe.garanhuns.projetoProvaPc.repositorios.Persistivel;
 import java.util.LinkedList;
 import java.util.List;
+import javax.persistence.*;
 
+@Table (name = "Professor")
+@Entity
 public class Professor implements Persistivel<Professor> {
 
+    @Id
     private int siap;
+    @Column
     private String senha;
+    @OneToMany
     private final List<Prova> provas = new LinkedList<>();
+    @OneToMany
     private final List<AplicacaoDaProva> aplicacoes = new LinkedList<>();
 
     public Professor(int siap, String senha) {

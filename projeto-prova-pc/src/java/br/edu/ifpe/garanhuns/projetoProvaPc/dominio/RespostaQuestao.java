@@ -1,5 +1,7 @@
 package br.edu.ifpe.garanhuns.projetoProvaPc.dominio;
 
+import javax.persistence.*;
+
 /**
  * @author lucas
  * @param <T>
@@ -9,11 +11,17 @@ package br.edu.ifpe.garanhuns.projetoProvaPc.dominio;
 // Esta classe guarda a resposta de um aluno a uma determinada questão
 // É abstract por que pode ser RepostaQuestaoMultiplaEscolha ou
 // RepostaQuestaoVerdadeiroOuFalso
+@MappedSuperclass
 public abstract class RespostaQuestao<T extends Questao> {
     
+    @Id
+    private int id;
+    
+    @OneToOne
     private T questao;
 
-    public RespostaQuestao(T questao) {
+    public RespostaQuestao(int id, T questao) {
+        this.id = id;
         this.questao = questao;
     }
 
@@ -28,5 +36,10 @@ public abstract class RespostaQuestao<T extends Questao> {
     public abstract double calcularPontuacao();
     
     public abstract String getResposta();
+
+    public int getId() {
+        return id;
+    }
+    
     
 }

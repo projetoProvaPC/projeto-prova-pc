@@ -1,14 +1,18 @@
 package br.edu.ifpe.garanhuns.projetoProvaPc.dominio;
 
+import javax.persistence.*;
+
 /** * @author lucas
  */
+@Entity
+@Table (name = "QuestaoVerdadeiroOuFalso")
 public class QuestaoVerdadeiroOuFalso extends Questao {
-    
+   @Column 
   private boolean [] correta;
 
-  public QuestaoVerdadeiroOuFalso (String enunciado, int pontuacao, 
+  public QuestaoVerdadeiroOuFalso (int id, String enunciado, int pontuacao, 
             Afirmacao [] afirmacoes) throws Exception {
-    super(enunciado,pontuacao);
+    super(id,enunciado,pontuacao);
     
     if(afirmacoes == null || afirmacoes.length!=5)
       throw new Exception("Quantidade de afirmacoes errada.");
@@ -27,6 +31,10 @@ public class QuestaoVerdadeiroOuFalso extends Questao {
             if (!(correta[i] ^ repostas[i])) r += 0.20;
         }
         return r;
+    }
+
+    public boolean[] getCorreta() {
+        return correta;
     }
 
   

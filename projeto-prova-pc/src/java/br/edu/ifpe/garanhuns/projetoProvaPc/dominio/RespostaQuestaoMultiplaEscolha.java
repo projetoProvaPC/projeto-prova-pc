@@ -6,16 +6,20 @@
 
 package br.edu.ifpe.garanhuns.projetoProvaPc.dominio;
 
+import javax.persistence.*;
+
 /**
  *
  * @author lucas
  */
+@Table (name = "RespostaQuestaoMultiplaEscolha")
+@Entity
 public class RespostaQuestaoMultiplaEscolha extends RespostaQuestao<QuestaoMultiplaEscolha>{
-
+    @Column
     private char resposta;
 
-    public RespostaQuestaoMultiplaEscolha(QuestaoMultiplaEscolha questao, char resposta) throws Exception {
-        super(questao);
+    public RespostaQuestaoMultiplaEscolha(int id,QuestaoMultiplaEscolha questao, char resposta) throws Exception {
+        super(id,questao);
         if(resposta > 'e')
             throw new Exception("Reposta inválida");
     }
@@ -29,6 +33,8 @@ public class RespostaQuestaoMultiplaEscolha extends RespostaQuestao<QuestaoMulti
     @Override
     public String getResposta() {
         return new String() + resposta;
+        
     }
+    
     
 }

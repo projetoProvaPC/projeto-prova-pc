@@ -18,6 +18,9 @@ import java.util.Set;
  */
 public class ProvaBuilder {
 
+    int id_alt = 0;
+    int id_que = 0;
+    
     private String tema;
     private Set<QuestaoMultiplaEscolha> questoes = new HashSet<QuestaoMultiplaEscolha>();
     
@@ -51,12 +54,13 @@ public class ProvaBuilder {
     }
     
     public void adicionarAlternativa(boolean veracidade, String afirmativa) {
-        Afirmacao a = new Afirmacao(afirmativa,veracidade);
+        Afirmacao a = new Afirmacao(++id_alt,afirmativa,veracidade);
         afirmacoes.add(a);
     }
     
     public void buildQuestao() throws Exception {
-        QuestaoMultiplaEscolha q = new QuestaoMultiplaEscolha(enunciado, pontuacao,afirmacoes.toArray(new Afirmacao [0]));
+        id_alt = 0;
+        QuestaoMultiplaEscolha q = new QuestaoMultiplaEscolha(++id_que,enunciado, pontuacao,afirmacoes.toArray(new Afirmacao [0]));
         questoes.add(q);
         afirmacoes.clear();
         this.enunciado = null;
