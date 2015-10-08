@@ -24,10 +24,8 @@
         for(int i=0;i<provas.size();i++){ 
             Prova p = provas.get(i);
         %>
-        <%=p.getTema()%>: <a href="PreparaFormularioAplicarProvaServlet?i=<%=i%>">Aplicar</a>
+        <%=p.getTema()%>: <a href="PreparaFormularioAplicarProvaServlet?i=<%=i%>">Aplicar</a><br/>
         <% } %>
-        
-        <%=provas.size()%>
         
     </body>
 </html>

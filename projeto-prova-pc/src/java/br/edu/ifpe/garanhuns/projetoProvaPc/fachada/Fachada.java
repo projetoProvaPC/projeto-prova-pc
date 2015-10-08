@@ -64,7 +64,7 @@ public final class Fachada {
         
         pb.setProfessor(a.getProfessor());
         
-        a.getProfessor().adicionarProva(pb.build());
+        pb.build();
     }
 
     public Professor recuperarProfessor(int siap) {
