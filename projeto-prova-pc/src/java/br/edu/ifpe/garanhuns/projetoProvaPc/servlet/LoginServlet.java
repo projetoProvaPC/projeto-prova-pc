@@ -1,4 +1,4 @@
-package br.edu.ifpe.garanhuns.projetoProvaPc.apresentacao.servlet;
+package br.edu.ifpe.garanhuns.projetoProvaPc.servlet;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -6,13 +6,10 @@ package br.edu.ifpe.garanhuns.projetoProvaPc.apresentacao.servlet;
  * and open the template in the editor.
  */
 
-import br.edu.ifpe.garanhuns.projetoProvaPc.builders.ProvaBuilder;
 import br.edu.ifpe.garanhuns.projetoProvaPc.excecoes.AutenticacaoFalhouException;
 import br.edu.ifpe.garanhuns.projetoProvaPc.fachada.Autenticacao;
 import br.edu.ifpe.garanhuns.projetoProvaPc.fachada.Fachada;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author 20141D12GR0122
  */
-@WebServlet(urlPatterns = {"/ConstrucaoProvaServlet"})
-public class ConstrucaoProvaServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/LoginServlet"})
+public class LoginServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,12 +34,19 @@ public class ConstrucaoProvaServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         try {
-            Fachada.getInstance().adicionar((Autenticacao) request.getSession().getAttribute("autenticacao"), (ProvaBuilder) request.getSession().getAttribute("prova_builder"));
+            
+            int codigo = Integer.parseInt(request.getParameter("login"));
+            String pwd = request.getParameter("pwd");
+            Autenticacao a = Fachada.getInstance().autenticar(codigo, pwd);
+            request.getSession().setAttribute("autenticacao", a);
             response.sendRedirect("index_professor.jsp");
-        } catch (AutenticacaoFalhouException ex) {
+            
+        } catch (Exception ex) {
             response.sendRedirect("pagina_erro.jsp");
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

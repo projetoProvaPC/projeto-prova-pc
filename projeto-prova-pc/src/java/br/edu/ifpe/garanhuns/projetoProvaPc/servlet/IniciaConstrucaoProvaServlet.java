@@ -1,14 +1,14 @@
+package br.edu.ifpe.garanhuns.projetoProvaPc.servlet;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifpe.garanhuns.projetoProvaPc.apresentacao.servlet;
 
-import br.edu.ifpe.garanhuns.projetoProvaPc.dominio.AplicacaoDaProva;
+import br.edu.ifpe.garanhuns.projetoProvaPc.builders.ProvaBuilder;
 import br.edu.ifpe.garanhuns.projetoProvaPc.fachada.Fachada;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,10 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author 20151D12GR0065
+ * @author 20141D12GR0122
  */
-@WebServlet(name = "ResponderProvaServlet", urlPatterns = {"/ResponderProvaServlet"})
-public class ResponderProvaServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/IniciaConstrucaoProvaServlet"})
+public class IniciaConstrucaoProvaServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,18 +33,11 @@ public class ResponderProvaServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String matricula = request.getParameter("matricula");
-        String senha = request.getParameter("senha");
-        
-        AplicacaoDaProva p = Fachada.getInstance().responderProva(matricula, senha);
-        if(p==null) {
-            response.sendRedirect("pagina_erro.jsp");
-            return;
-        }
-        request.getSession().setAttribute("aplicaco_de_prova", p);
-        request.getSession().setAttribute("matricula", matricula);
-        request.getSession().setAttribute("prova", p.getProva() );
-        response.sendRedirect("prova.jsp");
+            
+        ProvaBuilder pb = Fachada.getInstance().getProvaBuilder();
+        pb.setTema(request.getParameter("tema"));
+        request.getSession().setAttribute("prova_builder", pb);
+        response.sendRedirect("formulario_questao_multipla_escolha.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -28,7 +28,7 @@
         escolhida, i.e., 'a','b','c','d' ou 'e'.
         --%>
         <% Prova p = (Prova) session.getAttribute("prova"); %>
-        <% Iterator<Questao> qs = p.iterator(); %>
+        <% Iterator<QuestaoMultiplaEscolha> qs = p.iterator(); %>
         <%! QuestaoMultiplaEscolha q ; %>
         <% int qn = 0; %>
         

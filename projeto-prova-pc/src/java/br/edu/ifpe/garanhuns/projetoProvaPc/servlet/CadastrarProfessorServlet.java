@@ -4,27 +4,23 @@
  * and open the template in the editor.
  */
 
-package br.edu.ifpe.garanhuns.projetoProvaPc.apresentacao.servlet;
+package br.edu.ifpe.garanhuns.projetoProvaPc.servlet;
 
-import br.edu.ifpe.garanhuns.projetoProvaPc.dominio.Prova;
-import br.edu.ifpe.garanhuns.projetoProvaPc.fachada.Autenticacao;
 import br.edu.ifpe.garanhuns.projetoProvaPc.fachada.Fachada;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author lucas
  */
-@WebServlet(name = "RecuperarTodasAsProvasServlet", urlPatterns = {"/RecuperarTodasAsProvasServlet"})
-public class RecuperarTodasAsProvasServlet extends HttpServlet {
+@WebServlet(name = "CadastrarProfessorServlet", urlPatterns = {"/CadastrarProfessorServlet"})
+public class CadastrarProfessorServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,12 +33,18 @@ public class RecuperarTodasAsProvasServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        Autenticacao a = (Autenticacao) session.getAttribute("autenticacao");
-        List<Prova> provas = Fachada.getInstance().recuperarTodasAsProvas(a);
-        request.getSession().setAttribute("provas", provas);
-        
-        response.sendRedirect("selecionar_prova_para_aplicar.jsp");
+        try {
+            int siap = Integer.parseInt(request.getParameter("siap"));
+            String senha1 = request.getParameter("senha1");
+            String senha2 = request.getParameter("senha2");
+            
+            if(senha1==null || !senha1.equals(senha2)) throw new Exception();
+            
+            Fachada.getInstance().adicionarProfessor(siap,senha1);
+            response.sendRedirect("index.jsp");
+        } catch (Exception e) {
+            response.sendRedirect("pagina_erro.jsp");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

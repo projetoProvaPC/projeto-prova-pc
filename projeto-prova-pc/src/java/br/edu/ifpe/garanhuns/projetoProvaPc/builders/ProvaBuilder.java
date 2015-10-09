@@ -10,6 +10,8 @@ import br.edu.ifpe.garanhuns.projetoProvaPc.dominio.*;
 import br.edu.ifpe.garanhuns.projetoProvaPc.excecoes.IdNaoDisponivelException;
 import br.edu.ifpe.garanhuns.projetoProvaPc.fachada.Fachada;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -22,12 +24,12 @@ public class ProvaBuilder {
     int id_que = 0;
     
     private String tema;
-    private Set<QuestaoMultiplaEscolha> questoes = new HashSet<QuestaoMultiplaEscolha>();
+    private List<QuestaoMultiplaEscolha> questoes = new LinkedList<QuestaoMultiplaEscolha>();
     
     // Para contruir questoes de multiplaEscolha
     private String enunciado;
     private int pontuacao;
-    private Set<Afirmacao> afirmacoes = new HashSet<Afirmacao>();
+    private List<Afirmacao> afirmacoes = new LinkedList<Afirmacao>();
     private Professor prof;
     
     public ProvaBuilder() {

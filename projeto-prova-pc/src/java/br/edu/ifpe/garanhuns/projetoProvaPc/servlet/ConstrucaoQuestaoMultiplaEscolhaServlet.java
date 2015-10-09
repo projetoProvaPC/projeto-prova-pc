@@ -1,14 +1,13 @@
+package br.edu.ifpe.garanhuns.projetoProvaPc.servlet;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifpe.garanhuns.projetoProvaPc.apresentacao.servlet;
 
-import br.edu.ifpe.garanhuns.projetoProvaPc.dominio.Prova;
+import br.edu.ifpe.garanhuns.projetoProvaPc.builders.ProvaBuilder;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,10 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author 20151D12GR0065
+ * @author 20141D12GR0122
  */
-@WebServlet(name = "PreparaFormularioAplicarProvaServlet", urlPatterns = {"/PreparaFormularioAplicarProvaServlet"})
-public class PreparaFormularioAplicarProvaServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/ConstrucaoQuestaoMultiplaEscolhaServlet"})
+public class ConstrucaoQuestaoMultiplaEscolhaServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,11 +32,35 @@ public class PreparaFormularioAplicarProvaServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int i = Integer.parseInt(request.getParameter("i"));
-        Prova p = ((List<Prova>) request.getSession().getAttribute("provas")).get(i);
-        request.getSession().setAttribute("prova", p);
-        request.getSession().setAttribute("tema", p.getTema());
-        response.sendRedirect("formulario_aplicar_prova.jsp");
+        
+        ProvaBuilder pb = (ProvaBuilder) request.getSession().getAttribute("prova_builder");
+        if(pb==null) {
+            request.getSession().setAttribute("exception", new Exception("pb==null"));
+            response.sendRedirect("pagina_erro.jsp");
+            return;
+        }
+        String enunciado = request.getParameter("enunciado");
+        pb.adicionarQuestao(enunciado,1);    
+        
+        char correta = request.getParameter("correta").charAt(0);
+        
+        for(char l = 'a'; l<='e';l++) {
+            String afirmacao = request.getParameter("afirmacao" + l);
+            boolean veracidade = correta == l;
+            pb.adicionarAlternativa(veracidade,afirmacao);
+        }
+        
+        try {
+            pb.buildQuestao();
+            response.sendRedirect("apresentacao_prova_em_construcao.jsp");
+        } catch (Exception ex) {
+            request.getSession().setAttribute("exception", ex);
+            response.sendRedirect("pagina_erro.jsp");
+        }
+        
+        
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

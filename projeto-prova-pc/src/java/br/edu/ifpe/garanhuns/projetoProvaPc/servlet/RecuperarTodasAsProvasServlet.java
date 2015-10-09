@@ -4,9 +4,10 @@
  * and open the template in the editor.
  */
 
-package br.edu.ifpe.garanhuns.projetoProvaPc.apresentacao.servlet;
+package br.edu.ifpe.garanhuns.projetoProvaPc.servlet;
 
-import br.edu.ifpe.garanhuns.projetoProvaPc.dominio.AplicacaoDaProva;
+import br.edu.ifpe.garanhuns.projetoProvaPc.dominio.Prova;
+import br.edu.ifpe.garanhuns.projetoProvaPc.fachada.Autenticacao;
 import br.edu.ifpe.garanhuns.projetoProvaPc.fachada.Fachada;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,8 +23,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author lucas
  */
-@WebServlet(name = "ApresentaRespostasProvaServlet", urlPatterns = {"/ApresentaRespostasProvaServlet"})
-public class ApresentaRespostasProvaServlet extends HttpServlet {
+@WebServlet(name = "RecuperarTodasAsProvasServlet", urlPatterns = {"/RecuperarTodasAsProvasServlet"})
+public class RecuperarTodasAsProvasServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,12 +38,11 @@ public class ApresentaRespostasProvaServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        AplicacaoDaProva ap = ((List<AplicacaoDaProva>) session.getAttribute("aplicacoes_das_provas")).get(Integer.parseInt(request.getParameter("ap")));
-        session.setAttribute("tema", ap.getTema());
-        session.setAttribute("turma", ap.getTurma());
-        session.setAttribute("data", ap.getData());
-        session.setAttribute("respostas", Fachada.getInstance().recuperarRespostasAplicacaoDaProva(ap));
-        response.sendRedirect("apresenta_resposta_prova.jsp");
+        Autenticacao a = (Autenticacao) session.getAttribute("autenticacao");
+        List<Prova> provas = Fachada.getInstance().recuperarTodasAsProvas(a);
+        request.getSession().setAttribute("provas", provas);
+        
+        response.sendRedirect("selecionar_prova_para_aplicar.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

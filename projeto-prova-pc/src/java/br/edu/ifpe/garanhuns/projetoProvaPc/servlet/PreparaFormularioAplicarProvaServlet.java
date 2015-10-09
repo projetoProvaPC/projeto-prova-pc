@@ -3,25 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifpe.garanhuns.projetoProvaPc.apresentacao.servlet;
+package br.edu.ifpe.garanhuns.projetoProvaPc.servlet;
 
-import br.edu.ifpe.garanhuns.projetoProvaPc.dominio.AplicacaoDaProva;
 import br.edu.ifpe.garanhuns.projetoProvaPc.dominio.Prova;
-import br.edu.ifpe.garanhuns.projetoProvaPc.fachada.Fachada;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author 20151D12GR0065
  */
-@WebServlet(name = "AplicarProvaServlet", urlPatterns = {"/AplicarProvaServlet"})
-public class AplicarProvaServlet extends HttpServlet {
+@WebServlet(name = "PreparaFormularioAplicarProvaServlet", urlPatterns = {"/PreparaFormularioAplicarProvaServlet"})
+public class PreparaFormularioAplicarProvaServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,20 +33,11 @@ public class AplicarProvaServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        Prova p = (Prova) session.getAttribute("prova");
-        String turma = request.getParameter("turma");
-        if(turma==null) {
-            session.setAttribute("exception", new Exception("Turma is null on AplicarProvaServlet.java"));
-            response.sendRedirect("pagina_erro.jsp");
-            return;
-        }
-        AplicacaoDaProva a = Fachada.getInstance().criarAplicacaoProva(p,turma);
-        // tema, turma e senha
-        session.setAttribute("tema", a.getTema());
-        session.setAttribute("turma", a.getTurma());
-        session.setAttribute("senha", a.getSenha());
-        response.sendRedirect("pagina_aplicar_prova.jsp");
+        int i = Integer.parseInt(request.getParameter("i"));
+        Prova p = ((List<Prova>) request.getSession().getAttribute("provas")).get(i);
+        request.getSession().setAttribute("prova", p);
+        request.getSession().setAttribute("tema", p.getTema());
+        response.sendRedirect("formulario_aplicar_prova.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

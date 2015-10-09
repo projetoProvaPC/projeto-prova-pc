@@ -4,23 +4,26 @@
  * and open the template in the editor.
  */
 
-package br.edu.ifpe.garanhuns.projetoProvaPc.apresentacao.servlet;
+package br.edu.ifpe.garanhuns.projetoProvaPc.servlet;
 
+import br.edu.ifpe.garanhuns.projetoProvaPc.dominio.AplicacaoDaProva;
 import br.edu.ifpe.garanhuns.projetoProvaPc.fachada.Fachada;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author lucas
  */
-@WebServlet(name = "CadastrarProfessorServlet", urlPatterns = {"/CadastrarProfessorServlet"})
-public class CadastrarProfessorServlet extends HttpServlet {
+@WebServlet(name = "ApresentaRespostasProvaServlet", urlPatterns = {"/ApresentaRespostasProvaServlet"})
+public class ApresentaRespostasProvaServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,18 +36,13 @@ public class CadastrarProfessorServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            int siap = Integer.parseInt(request.getParameter("siap"));
-            String senha1 = request.getParameter("senha1");
-            String senha2 = request.getParameter("senha2");
-            
-            if(senha1==null || !senha1.equals(senha2)) throw new Exception();
-            
-            Fachada.getInstance().adicionarProfessor(siap,senha1);
-            response.sendRedirect("index.jsp");
-        } catch (Exception e) {
-            response.sendRedirect("pagina_erro.jsp");
-        }
+        HttpSession session = request.getSession();
+        AplicacaoDaProva ap = ((List<AplicacaoDaProva>) session.getAttribute("aplicacoes_das_provas")).get(Integer.parseInt(request.getParameter("i")));
+        session.setAttribute("tema", ap.getTema());
+        session.setAttribute("turma", ap.getTurma());
+        session.setAttribute("data", ap.getData());
+        session.setAttribute("respostas", Fachada.getInstance().recuperarRespostasAplicacaoDaProva(ap));
+        response.sendRedirect("apresenta_resposta_prova.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

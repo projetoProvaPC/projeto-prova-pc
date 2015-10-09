@@ -4,6 +4,8 @@
     Author     : 20141D12GR0122
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="br.edu.ifpe.garanhuns.projetoProvaPc.dominio.AplicacaoDaProva"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,6 +14,25 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Finja que aqui tem uma lista de respostas!!!</h1>
+        <h1>Provas aplicadas</h1>
+        
+        <% List<AplicacaoDaProva> as = (List<AplicacaoDaProva>) session.getAttribute("aplicacao_da_prova_list"); %>
+        
+        <% if (as==null) {
+           session.setAttribute("exception", new Exception("apresente_aplicacao_da_prova.jsp::session::as==null"));
+           response.sendRedirect("pagina_erro.jsp");
+        } else if (as.size()==0) {%>
+            <p>Não tem nenhuma aplicacao de prova</p>
+        <%} else {%>
+        
+            <% for(int i=0;i<as.size();i++) { %>
+            
+                <% AplicacaoDaProva a = as.get(i);  %>
+        
+                <%= a.getTema() %> | <%=a.getTurma()%> | <a href="ApresentaRespostasProvaServlet?i=<%=i%>">Ver resultados</a><br/>
+        
+            <% }  %>
+        
+        <% } %>
     </body>
 </html>

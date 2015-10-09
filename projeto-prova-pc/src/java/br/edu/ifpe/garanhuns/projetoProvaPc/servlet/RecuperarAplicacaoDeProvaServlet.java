@@ -1,13 +1,19 @@
-package br.edu.ifpe.garanhuns.projetoProvaPc.apresentacao.servlet;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package br.edu.ifpe.garanhuns.projetoProvaPc.servlet;
 
-import br.edu.ifpe.garanhuns.projetoProvaPc.builders.ProvaBuilder;
+import br.edu.ifpe.garanhuns.projetoProvaPc.dominio.AplicacaoDaProva;
+import br.edu.ifpe.garanhuns.projetoProvaPc.excecoes.AutenticacaoFalhouException;
+import br.edu.ifpe.garanhuns.projetoProvaPc.fachada.Autenticacao;
+import br.edu.ifpe.garanhuns.projetoProvaPc.fachada.Fachada;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,8 +24,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author 20141D12GR0122
  */
-@WebServlet(urlPatterns = {"/ConstrucaoQuestaoMultiplaEscolhaServlet"})
-public class ConstrucaoQuestaoMultiplaEscolhaServlet extends HttpServlet {
+@WebServlet(name = "RecuperarAplicacaoDeProvaServlet", urlPatterns = {"/RecuperarAplicacaoDeProvaServlet"})
+public class RecuperarAplicacaoDeProvaServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,35 +38,14 @@ public class ConstrucaoQuestaoMultiplaEscolhaServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        ProvaBuilder pb = (ProvaBuilder) request.getSession().getAttribute("prova_builder");
-        if(pb==null) {
-            request.getSession().setAttribute("exception", new Exception("pb==null"));
-            response.sendRedirect("pagina_erro.jsp");
-            return;
-        }
-        String enunciado = request.getParameter("enunciado");
-        pb.adicionarQuestao(enunciado,1);    
-        
-        char correta = request.getParameter("correta").charAt(0);
-        
-        for(char l = 'a'; l<='e';l++) {
-            String afirmacao = request.getParameter("afirmacao" + l);
-            boolean veracidade = correta == l;
-            pb.adicionarAlternativa(veracidade,afirmacao);
-        }
-        
+        Autenticacao a = (Autenticacao) request.getSession().getAttribute("autenticacao");
         try {
-            pb.buildQuestao();
-            response.sendRedirect("apresentacao_prova_em_construcao.jsp");
-        } catch (Exception ex) {
-            request.getSession().setAttribute("exception", ex);
+            List<AplicacaoDaProva> as = Fachada.getInstance().recuperarAplicaoDaProva(a);
+            request.getSession().setAttribute("aplicacao_da_prova_list", as);
+            response.sendRedirect("apresente_aplicacao_da_prova.jsp");
+        } catch (AutenticacaoFalhouException ex) {
             response.sendRedirect("pagina_erro.jsp");
         }
-        
-        
-        
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
