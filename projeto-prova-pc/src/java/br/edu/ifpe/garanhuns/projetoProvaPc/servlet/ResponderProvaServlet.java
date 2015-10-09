@@ -41,7 +41,7 @@ public class ResponderProvaServlet extends HttpServlet {
             response.sendRedirect("pagina_erro.jsp");
             return;
         }
-        request.getSession().setAttribute("aplicaco_de_prova", p);
+        request.getSession().setAttribute("senha", senha);
         request.getSession().setAttribute("matricula", matricula);
         request.getSession().setAttribute("prova", p.getProva() );
         response.sendRedirect("prova.jsp");

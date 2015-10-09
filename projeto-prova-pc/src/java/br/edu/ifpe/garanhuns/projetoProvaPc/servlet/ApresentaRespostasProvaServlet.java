@@ -37,7 +37,7 @@ public class ApresentaRespostasProvaServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        AplicacaoDaProva ap = ((List<AplicacaoDaProva>) session.getAttribute("aplicacoes_das_provas")).get(Integer.parseInt(request.getParameter("i")));
+        AplicacaoDaProva ap = ((List<AplicacaoDaProva>) session.getAttribute("aplicacao_da_prova_list")).get(Integer.parseInt(request.getParameter("i")));
         session.setAttribute("tema", ap.getTema());
         session.setAttribute("turma", ap.getTurma());
         session.setAttribute("data", ap.getData());

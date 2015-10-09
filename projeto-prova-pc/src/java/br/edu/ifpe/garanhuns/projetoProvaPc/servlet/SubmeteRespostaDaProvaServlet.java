@@ -6,13 +6,19 @@
 
 package br.edu.ifpe.garanhuns.projetoProvaPc.servlet;
 
+import br.edu.ifpe.garanhuns.projetoProvaPc.builders.RespostaProvaQuestaoMultiplaEscolhaBuilder;
+import br.edu.ifpe.garanhuns.projetoProvaPc.dominio.Prova;
+import br.edu.ifpe.garanhuns.projetoProvaPc.dominio.QuestaoMultiplaEscolha;
+import br.edu.ifpe.garanhuns.projetoProvaPc.fachada.Fachada;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Iterator;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -32,6 +38,19 @@ public class SubmeteRespostaDaProvaServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        String matricula = request.getParameter("matricula");
+        String senha = request.getParameter("senha");
+        RespostaProvaQuestaoMultiplaEscolhaBuilder builder = Fachada.getInstance().getRespostaProvaQuestaoMultiplaEscolhaBuilder(matricula,senha);
+        
+        Iterator<QuestaoMultiplaEscolha> qs = builder.iterator();
+        int i=1;
+        while(qs.hasNext()) {
+            QuestaoMultiplaEscolha q = qs.next();
+            builder.responder(q,request.getParameter("q"+i).charAt(0));
+            i++;
+        }
+        Fachada.getInstance().adicionar(builder);
         response.sendRedirect("pagina_prova_terminada.jsp");
     }
 

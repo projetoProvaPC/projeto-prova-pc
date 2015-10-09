@@ -7,6 +7,7 @@
 package br.edu.ifpe.garanhuns.projetoProvaPc.fachada;
 
 import br.edu.ifpe.garanhuns.projetoProvaPc.builders.ProvaBuilder;
+import br.edu.ifpe.garanhuns.projetoProvaPc.builders.RespostaProvaQuestaoMultiplaEscolhaBuilder;
 import br.edu.ifpe.garanhuns.projetoProvaPc.dominio.*;
 import br.edu.ifpe.garanhuns.projetoProvaPc.excecoes.AutenticacaoFalhouException;
 import br.edu.ifpe.garanhuns.projetoProvaPc.excecoes.IdNaoDisponivelException;
@@ -79,7 +80,7 @@ public final class Fachada {
     public AplicacaoDaProva criarAplicacaoProva(Prova p, String turma) {
         AplicacaoDaProva a = null;
         try {
-            a = new AplicacaoDaProva(this.aplicacoes_das_provas.proxId(), p, gerarSenha(), turma);
+            a = new AplicacaoDaProva(p, gerarSenha(), turma);
             this.aplicacoes_das_provas.adicionar(a);
             p.getProfessor().adicionarAplicacaoDaProva(a);
         } catch (IdNaoDisponivelException ex) {
@@ -107,6 +108,16 @@ public final class Fachada {
 
     public List<RespostaProva> recuperarRespostasAplicacaoDaProva(AplicacaoDaProva ap) {
         return ap.recuperarRespostas();
+    }
+
+    public RespostaProvaQuestaoMultiplaEscolhaBuilder getRespostaProvaQuestaoMultiplaEscolhaBuilder(String matricula, String senha) {
+        AplicacaoDaProva ap = this.aplicacoes_das_provas.recuperarPorSenha(senha);
+        return new RespostaProvaQuestaoMultiplaEscolhaBuilder(matricula,ap);
+    }
+
+    public void adicionar(RespostaProvaQuestaoMultiplaEscolhaBuilder builder) {
+        RespostaProva rp = builder.build();
+        builder.getAplicacao().adicionar(rp);
     }
     
     

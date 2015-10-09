@@ -10,6 +10,9 @@ import javax.persistence.*;
 public class Professor implements Persistivel<Professor> {
 
     @Id
+    @GeneratedValue
+    private long id = -1;
+    @Column
     private int siap;
     @Column
     private String senha;
@@ -43,9 +46,12 @@ public class Professor implements Persistivel<Professor> {
         return senha != null && senha.equals(this.senha);
     }
 
-    @Override
-    public int getId() {
-        return siap;
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     @Override
@@ -76,15 +82,6 @@ public class Professor implements Persistivel<Professor> {
 
     public void adicionarAplicacaoDaProva(AplicacaoDaProva a) {
         this.aplicacoes.add(a);
-    }
-
-    public int proximoIdProva() {
-        int max = 1;
-        for (Prova prova : provas) {
-            if(prova.getId()> max)
-                max = prova.getId();
-        }
-        return max;
     }
 
 }

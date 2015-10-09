@@ -2,6 +2,7 @@ package br.edu.ifpe.garanhuns.projetoProvaPc.dominio;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,15 +12,14 @@ import javax.persistence.Table;
 public class Afirmacao {
     
     @Id
-    @Column
-    private int id;
+    @GeneratedValue
+    private long id = -1;
     @Column
     private String texto;
     @Column
     private boolean veracidade;
     
-    public Afirmacao(int id, String texto, boolean veracidade){
-        this.id = id;
+    public Afirmacao(String texto, boolean veracidade){
         this.texto = texto;
         this.veracidade = veracidade;
     }
@@ -40,10 +40,12 @@ public class Afirmacao {
         this.veracidade = veracidade;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
  
-    
+    public void setId(long id) {
+        this.id = id;
+    }
     
 }

@@ -16,9 +16,8 @@ import br.edu.ifpe.garanhuns.projetoProvaPc.excecoes.IdNaoDisponivelException;
 public interface Repositorio<Tipo extends Persistivel> {
     
     public void adicionar(Tipo t) throws IdNaoDisponivelException;
-    public Tipo remover(int id);
+    public Tipo remover(long id);
     public void alterar(Tipo t);
-    public Tipo recuperar(int id);
+    public Tipo recuperar(long id);
     public List<Tipo> recuperar();
-    public int proxId();
 }

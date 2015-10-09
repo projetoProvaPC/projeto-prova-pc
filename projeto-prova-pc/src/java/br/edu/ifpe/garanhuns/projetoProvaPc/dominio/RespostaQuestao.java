@@ -15,13 +15,13 @@ import javax.persistence.*;
 public abstract class RespostaQuestao<T extends Questao> {
     
     @Id
-    private int id;
+    @GeneratedValue
+    private long id = -1;
     
     @OneToOne
     private T questao;
 
-    public RespostaQuestao(int id, T questao) {
-        this.id = id;
+    public RespostaQuestao(T questao) {
         this.questao = questao;
     }
 
@@ -37,9 +37,13 @@ public abstract class RespostaQuestao<T extends Questao> {
     
     public abstract String getResposta();
 
-    public int getId() {
+    public long getId() {
         return id;
     }
-    
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     
 }

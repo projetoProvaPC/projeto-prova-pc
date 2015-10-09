@@ -18,10 +18,10 @@ public class RespostaQuestaoMultiplaEscolha extends RespostaQuestao<QuestaoMulti
     @Column
     private char resposta;
 
-    public RespostaQuestaoMultiplaEscolha(int id,QuestaoMultiplaEscolha questao, char resposta) throws Exception {
-        super(id,questao);
-        if(resposta > 'e')
-            throw new Exception("Reposta inválida");
+    public RespostaQuestaoMultiplaEscolha(QuestaoMultiplaEscolha questao, char resposta)/* throws Exception */ {
+        super(questao);
+        /*if(resposta > 'e')
+            throw new Exception("Reposta inválida");*/
     }
     
     @Override
@@ -35,6 +35,5 @@ public class RespostaQuestaoMultiplaEscolha extends RespostaQuestao<QuestaoMulti
         return new String() + resposta;
         
     }
-    
     
 }

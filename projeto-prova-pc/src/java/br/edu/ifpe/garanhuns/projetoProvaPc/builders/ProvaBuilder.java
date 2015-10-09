@@ -19,9 +19,6 @@ import java.util.Set;
  * @author lucas
  */
 public class ProvaBuilder {
-
-    int id_alt = 0;
-    int id_que = 0;
     
     private String tema;
     private List<QuestaoMultiplaEscolha> questoes = new LinkedList<QuestaoMultiplaEscolha>();
@@ -56,20 +53,19 @@ public class ProvaBuilder {
     }
     
     public void adicionarAlternativa(boolean veracidade, String afirmativa) {
-        Afirmacao a = new Afirmacao(++id_alt,afirmativa,veracidade);
+        Afirmacao a = new Afirmacao(afirmativa,veracidade);
         afirmacoes.add(a);
     }
     
     public void buildQuestao() throws Exception {
-        id_alt = 0;
-        QuestaoMultiplaEscolha q = new QuestaoMultiplaEscolha(++id_que,enunciado, pontuacao,afirmacoes.toArray(new Afirmacao [0]));
+        QuestaoMultiplaEscolha q = new QuestaoMultiplaEscolha(enunciado, pontuacao,afirmacoes.toArray(new Afirmacao [0]));
         questoes.add(q);
         afirmacoes.clear();
         this.enunciado = null;
     }
     
     public Prova build() {
-        Prova p = new Prova(this.prof.proximoIdProva(), tema);
+        Prova p = new Prova(tema);
         for (QuestaoMultiplaEscolha questaoMultiplaEscolha : questoes) {
             p.add(questaoMultiplaEscolha);
         }

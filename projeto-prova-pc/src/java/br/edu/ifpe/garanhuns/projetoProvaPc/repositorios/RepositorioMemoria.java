@@ -19,12 +19,14 @@ import java.util.Map;
  */
 public class RepositorioMemoria<Tipo extends Persistivel> implements Repositorio<Tipo> {
 
-    private final Map<Integer,Tipo> elementos = new HashMap<>();
-    private int maxid = 1;
+    private final Map<Long,Tipo> elementos = new HashMap<>();
+    private static long maxid = 1;
     
     @Override
     public void adicionar(Tipo t) throws IdNaoDisponivelException {
-        if(elementos.containsKey(t.getId()))
+        if(t.getId()==-1)
+            t.setId(maxid++);
+        else if(elementos.containsKey(t.getId()))
             throw new IdNaoDisponivelException();
         else if(maxid < t.getId() )
             maxid = t.getId();
@@ -32,7 +34,7 @@ public class RepositorioMemoria<Tipo extends Persistivel> implements Repositorio
     }
 
     @Override
-    public Tipo remover(int id) {
+    public Tipo remover(long id) {
         return elementos.remove(id);
     }
 
@@ -48,21 +50,15 @@ public class RepositorioMemoria<Tipo extends Persistivel> implements Repositorio
     @Override
     public List<Tipo> recuperar() {
         ArrayList<Tipo> al = new ArrayList<>();
-        for (Map.Entry<Integer, Tipo> e : elementos.entrySet()) {
+        for (Map.Entry<Long, Tipo> e : elementos.entrySet()) {
             al.add(e.getValue());
         }
         return al;
     }
 
     @Override
-    public Tipo recuperar(int id) {
+    public Tipo recuperar(long id) {
         return elementos.get(id);
     }
-
-    @Override
-    public int proxId() {
-        return ++maxid;
-    }
-    
     
 }

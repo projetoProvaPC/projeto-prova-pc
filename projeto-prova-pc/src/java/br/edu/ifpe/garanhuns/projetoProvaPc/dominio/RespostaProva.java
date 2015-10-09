@@ -21,8 +21,9 @@ import javax.persistence.*;
 public class RespostaProva {
 
     @Id
+    @GeneratedValue
     // São a resposta de uma aluno
-    private int id;
+    private long id = -1;
     @Column
     private String aluno;
     // Em uma determinada aplicação da prova
@@ -35,8 +36,7 @@ public class RespostaProva {
     private final Map<QuestaoMultiplaEscolha,RespostaQuestaoMultiplaEscolha> respostas;
 
     // Construtor simples
-    public RespostaProva(int id, String aluno, AplicacaoDaProva prova) {
-        this.id= id;
+    public RespostaProva(String aluno, AplicacaoDaProva prova) {
         this.aluno = aluno;
         this.prova = prova;
         this.respostas = new HashMap<>();
@@ -116,9 +116,12 @@ public class RespostaProva {
         return true;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
-    
+
+    public void setId(long id) {
+        this.id = id;
+    }
     
 }

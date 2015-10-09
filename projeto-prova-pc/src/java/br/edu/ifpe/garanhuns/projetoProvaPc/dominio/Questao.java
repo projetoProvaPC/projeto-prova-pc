@@ -23,7 +23,7 @@ public abstract class Questao {
     
     @Id
     @Column
-    private int id;
+    private long id = -1;
     @Column
     private String enunciado;
     @Column
@@ -31,14 +31,13 @@ public abstract class Questao {
     @OneToMany
     private List<Afirmacao> afirmacoes = new ArrayList<>();
 
-    public Questao(int id, String enunciado, int pontuacao) {
-        this.id = id;
+    public Questao(String enunciado, int pontuacao) {
         this.enunciado = enunciado;
         this.pontuacao = pontuacao;
     }
     
-    public Questao(int id, String enunciado, int pontuacao, List<Afirmacao> afirmacoes) {
-        this(id,enunciado,pontuacao);
+    public Questao(String enunciado, int pontuacao, List<Afirmacao> afirmacoes) {
+        this(enunciado,pontuacao);
         this.afirmacoes = afirmacoes;
     }
     
@@ -72,9 +71,12 @@ public abstract class Questao {
         return afirmacoes.get(i);
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
-    
-   
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
 }

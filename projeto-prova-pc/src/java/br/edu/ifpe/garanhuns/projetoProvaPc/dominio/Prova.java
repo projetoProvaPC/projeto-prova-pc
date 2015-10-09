@@ -9,7 +9,8 @@ import javax.persistence.*;
 public class Prova implements Persistivel<Prova>{
 
     @Id
-    private int id;
+    @GeneratedValue
+    private long id = -1;
     @Column
     private String tema;
     @OneToMany
@@ -20,13 +21,12 @@ public class Prova implements Persistivel<Prova>{
     public Prova() {
     }
     
-    public Prova(int id, String tema) {
-	this.id = id;
+    public Prova(String tema) {
         this.tema = tema;
     }
     
-    public Prova(int id, String tema, List<QuestaoMultiplaEscolha> questoes) {
-        this(id,tema);
+    public Prova(String tema, List<QuestaoMultiplaEscolha> questoes) {
+        this(tema);
         this.questoes = questoes;
     }
     
@@ -54,9 +54,12 @@ public class Prova implements Persistivel<Prova>{
         return questoes.iterator();
     }
 
-    @Override
-    public int getId() {
+    public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     @Override

@@ -1,6 +1,5 @@
 package br.edu.ifpe.garanhuns.projetoProvaPc.dominio;
 
-
 import br.edu.ifpe.garanhuns.projetoProvaPc.repositorios.Persistivel;
 import java.util.Date;
 import java.util.LinkedList;
@@ -22,7 +21,8 @@ import javax.persistence.*;
 public class AplicacaoDaProva implements Persistivel<AplicacaoDaProva> {
     
     @Id
-    private int id;
+    @GeneratedValue
+    private long id = -1;
     @ManyToOne
     private Prova prova;
     @Column
@@ -39,11 +39,11 @@ public class AplicacaoDaProva implements Persistivel<AplicacaoDaProva> {
 
     // essa senha tem que ser gerada automaticamente
     // vamos ver depois como fazer isso
-    public AplicacaoDaProva(int id, Prova prova, String senha, String turma) {
-        this.id = id;
+    public AplicacaoDaProva(Prova prova, String senha, String turma) {
         this.senha = senha;
         this.turma = turma;
         this.prova = prova;
+        this.data = new Date();
     }
 
     public Date getData() {
@@ -74,11 +74,14 @@ public class AplicacaoDaProva implements Persistivel<AplicacaoDaProva> {
         return this.prova.getTema();
     }
 
-    @Override
-    public int getId() {
+    public long getId() {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+    
     @Override
     public void alterar(AplicacaoDaProva t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -94,6 +97,10 @@ public class AplicacaoDaProva implements Persistivel<AplicacaoDaProva> {
             rc.add(respostaProva);
         }
         return rc;
+    }
+
+    public void adicionar(RespostaProva rp) {
+        this.respostas.add(rp);
     }
     
     

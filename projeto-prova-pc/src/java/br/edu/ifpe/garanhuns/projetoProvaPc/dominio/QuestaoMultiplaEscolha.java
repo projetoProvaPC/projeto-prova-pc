@@ -14,9 +14,9 @@ public class QuestaoMultiplaEscolha extends Questao {
     
     // O contrutor aceita um array de 5 alternativas com 4 falsas e uma correta
     // Em qualquer outro caso lança uma exceção
-    public QuestaoMultiplaEscolha( int id, String enunciado, int pontuacao, 
+    public QuestaoMultiplaEscolha( String enunciado, int pontuacao, 
             Afirmacao [] alternativas) throws Exception {
-        super(id,enunciado, pontuacao);
+        super(enunciado, pontuacao);
        
         
         // Devem ter 5 alternativas

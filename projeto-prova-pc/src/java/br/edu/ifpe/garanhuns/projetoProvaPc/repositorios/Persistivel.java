@@ -11,6 +11,7 @@ package br.edu.ifpe.garanhuns.projetoProvaPc.repositorios;
  * @author lucas
  */
 public interface Persistivel<Tipo> {
-    public int getId();
+    public void setId(long id);
+    public long getId();
     public void alterar(Tipo t);
 }
