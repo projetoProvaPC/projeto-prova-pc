@@ -25,5 +25,8 @@
            <p> <%=e.getMessage() %> </p>
            <p> <%=sw.toString()%> </p>
            <% } %>
+           
+           <%@include file="WEB-INF/jspf/escreve_mensagens.jspf" %>
+           
     </body>
 </html>

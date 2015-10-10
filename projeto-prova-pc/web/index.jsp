@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="br.edu.ifpe.garanhuns.projetoProvaPc.fachada.Logger"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,6 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        
         <a href="login_professor.jsp">login</a> <br/>
         <a href="formulario_cadastrar_professor.jsp">cadastrar professor</a> <br/>
         <a href="formulario_responder_prova.jsp">responder uma prova</a>

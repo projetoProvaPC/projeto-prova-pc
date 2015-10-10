@@ -11,14 +11,12 @@ import br.edu.ifpe.garanhuns.projetoProvaPc.builders.RespostaProvaQuestaoMultipl
 import br.edu.ifpe.garanhuns.projetoProvaPc.dominio.*;
 import br.edu.ifpe.garanhuns.projetoProvaPc.excecoes.AutenticacaoFalhouException;
 import br.edu.ifpe.garanhuns.projetoProvaPc.excecoes.IdNaoDisponivelException;
-import br.edu.ifpe.garanhuns.projetoProvaPc.repositorios.Repositorio;
 import br.edu.ifpe.garanhuns.projetoProvaPc.repositorios.RepositorioAplicacaoDaProva;
 import br.edu.ifpe.garanhuns.projetoProvaPc.repositorios.RepositorioAplicacaoDaProvaMemoria;
-import br.edu.ifpe.garanhuns.projetoProvaPc.repositorios.RepositorioMemoria;
+import br.edu.ifpe.garanhuns.projetoProvaPc.repositorios.RepositorioProfessor;
+import br.edu.ifpe.garanhuns.projetoProvaPc.repositorios.RepositorioProfessorMemoria;
 import java.util.HashMap;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -29,12 +27,13 @@ public final class Fachada {
     private RandomString rs = new RandomString(5);
     
     private static Fachada instance = null;
+    private String prefix = "Fachada::";
     
     private Fachada() {
         try {
             adicionarProfessor(123,"123");
         } catch (IdNaoDisponivelException ex) {
-            Logger.getLogger(Fachada.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getInstance().print(LoggerNivel.ERRO, prefix + "builder::IdNaoDisponivelException");
         }
     }
     
@@ -45,7 +44,7 @@ public final class Fachada {
     
     //  Repositorios
     private String tipo;
-    private final Repositorio<Professor> professores = new RepositorioMemoria<>();
+    private final RepositorioProfessor professores = new RepositorioProfessorMemoria();
     private final RepositorioAplicacaoDaProva aplicacoes_das_provas = new RepositorioAplicacaoDaProvaMemoria();
     
     // Isso aqui tem que ser melhorado!
@@ -69,7 +68,7 @@ public final class Fachada {
     }
 
     public Professor recuperarProfessor(int siap) {
-        return professores.recuperar(siap);
+        return professores.recuperarPorSiap(siap);
     }
 
     public void adicionarProfessor(int siap, String senha) throws IdNaoDisponivelException {
@@ -84,7 +83,7 @@ public final class Fachada {
             this.aplicacoes_das_provas.adicionar(a);
             p.getProfessor().adicionarAplicacaoDaProva(a);
         } catch (IdNaoDisponivelException ex) {
-            Logger.getLogger(Fachada.class.getName()).log(Level.SEVERE, null, ex); // mudar
+            Logger.getInstance().print(LoggerNivel.ERRO, prefix + "criarAplicacaoProva::IdNaoDisponivelException");
         }
         return a;
     }
@@ -112,6 +111,13 @@ public final class Fachada {
 
     public RespostaProvaQuestaoMultiplaEscolhaBuilder getRespostaProvaQuestaoMultiplaEscolhaBuilder(String matricula, String senha) {
         AplicacaoDaProva ap = this.aplicacoes_das_provas.recuperarPorSenha(senha);
+        Logger.getInstance().print(LoggerNivel.DEBUG, prefix + "getRespostaProvaQuestaoMultiplaEscolhaBuilder::recuperando por senha");
+        Logger.getInstance().print(LoggerNivel.DEBUG, prefix + "getRespostaProvaQuestaoMultiplaEscolhaBuilder::ap::senha= " + ap.getSenha());
+        Logger.getInstance().print(LoggerNivel.DEBUG, prefix + "getRespostaProvaQuestaoMultiplaEscolhaBuilder::ap::turma= " + ap.getTurma());
+        Logger.getInstance().print(LoggerNivel.DEBUG, prefix + "getRespostaProvaQuestaoMultiplaEscolhaBuilder::ap::data= " + ap.getData());
+        Logger.getInstance().print(LoggerNivel.DEBUG, prefix + "getRespostaProvaQuestaoMultiplaEscolhaBuilder::ap::professor::siap= " + ap.getProfessor().getSiap());
+        Logger.getInstance().print(LoggerNivel.DEBUG, prefix + "getRespostaProvaQuestaoMultiplaEscolhaBuilder::ap::tema= " + ap.getTema());
+        Logger.getInstance().print(LoggerNivel.DEBUG, prefix + "getRespostaProvaQuestaoMultiplaEscolhaBuilder::criando nova RespostaProvaQuestaoMultiplaEscolhaBuilder pela matricula e pela AplicacaoDaProva recuperada");
         return new RespostaProvaQuestaoMultiplaEscolhaBuilder(matricula,ap);
     }
 

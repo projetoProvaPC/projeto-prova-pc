@@ -10,7 +10,7 @@ public class QuestaoMultiplaEscolha extends Questao {
 
     // qual das 5 é a correta? (de 0 a 4, inclusive)
     @Column
-    private int correta;
+    private char correta;
     
     // O contrutor aceita um array de 5 alternativas com 4 falsas e uma correta
     // Em qualquer outro caso lança uma exceção
@@ -25,13 +25,12 @@ public class QuestaoMultiplaEscolha extends Questao {
         
         boolean temUmaCorreata = false;
         
-        // Adiciona as alternativas
-        for (int i = 0; i < 5; i++) {
-            Afirmacao a = alternativas[i];
+        for(char r = 'a'; r <= 'e'; r++) {
+            Afirmacao a = alternativas[r - 'a'];
             // Só pode ter uma correta
             if(a.veracidade() && !temUmaCorreata ) {
                 temUmaCorreata = true;
-                correta = i;
+                correta = r;
             } else if (a.veracidade()) 
                 throw new Exception ("Só pode haver uma alternativa correta");
             super.add(a);
@@ -42,7 +41,14 @@ public class QuestaoMultiplaEscolha extends Questao {
             throw new Exception("Não tem nenhuma alternativa correta");
         
     }
+
+    @Override
+    public String toString() {
+        return "QuestaoMultiplaEscolha{" + "enunciado=" + super.getEnunciado() + "correta=" + correta + '}';
+    }
      
+    
+    
     public char correta ()  {
         return  (char) ('a'  + correta);
     }
@@ -52,7 +58,7 @@ public class QuestaoMultiplaEscolha extends Questao {
     }
     
     public boolean isCorrect (char a) {
-        return correta == a - 'a' ;
+        return correta == a;
     }
     
 }

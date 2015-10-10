@@ -18,7 +18,7 @@ public abstract class RespostaQuestao<T extends Questao> {
     @GeneratedValue
     private long id = -1;
     
-    @OneToOne
+    @ManyToOne
     private T questao;
 
     public RespostaQuestao(T questao) {

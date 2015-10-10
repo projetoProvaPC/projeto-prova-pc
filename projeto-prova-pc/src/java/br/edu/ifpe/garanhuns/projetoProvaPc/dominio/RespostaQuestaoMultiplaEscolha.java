@@ -6,6 +6,8 @@
 
 package br.edu.ifpe.garanhuns.projetoProvaPc.dominio;
 
+import br.edu.ifpe.garanhuns.projetoProvaPc.fachada.Logger;
+import br.edu.ifpe.garanhuns.projetoProvaPc.fachada.LoggerNivel;
 import javax.persistence.*;
 
 /**
@@ -17,9 +19,14 @@ import javax.persistence.*;
 public class RespostaQuestaoMultiplaEscolha extends RespostaQuestao<QuestaoMultiplaEscolha>{
     @Column
     private char resposta;
+    
+    private String prefix = "RespostaQuestaoMultiplaEscolha::";
 
     public RespostaQuestaoMultiplaEscolha(QuestaoMultiplaEscolha questao, char resposta)/* throws Exception */ {
         super(questao);
+        this.resposta = resposta;
+        Logger.getInstance().print(LoggerNivel.DEBUG, prefix + "chamou super(questao)\n" 
+                + "::params::questao= " + questao.toString());
         /*if(resposta > 'e')
             throw new Exception("Reposta inválida");*/
     }

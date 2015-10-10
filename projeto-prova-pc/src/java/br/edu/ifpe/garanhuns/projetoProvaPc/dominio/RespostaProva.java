@@ -72,7 +72,7 @@ public class RespostaProva {
     // Na verdade, ele substitui, porque todas as perguntas já foram
     // adicionadas.
     public void adiconar(QuestaoMultiplaEscolha q, RespostaQuestaoMultiplaEscolha r) {
-        respostas.replace(q, r);
+        respostas.put(q, r);
     }
 
     // Remove a respota
@@ -83,7 +83,13 @@ public class RespostaProva {
     
     // Outros métodos relacionados as respostas
     public double pontuacao () {
-        throw new UnsupportedOperationException(); // Operação não suportada.
+        double total = 0;
+        
+        for (RespostaQuestaoMultiplaEscolha r : this.respostas.values()) {
+            total += r.calcularPontuacao();
+        }
+        
+        return total;
     }
     
     // Outros métodos

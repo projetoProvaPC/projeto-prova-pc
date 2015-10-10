@@ -36,14 +36,14 @@ public class ResponderProvaServlet extends HttpServlet {
         String matricula = request.getParameter("matricula");
         String senha = request.getParameter("senha");
         
-        AplicacaoDaProva p = Fachada.getInstance().responderProva(matricula, senha);
-        if(p==null) {
+        AplicacaoDaProva ap = Fachada.getInstance().responderProva(matricula, senha);
+        if(ap==null) {
             response.sendRedirect("pagina_erro.jsp");
             return;
         }
         request.getSession().setAttribute("senha", senha);
         request.getSession().setAttribute("matricula", matricula);
-        request.getSession().setAttribute("prova", p.getProva() );
+        request.getSession().setAttribute("prova", ap.getProva() );
         response.sendRedirect("prova.jsp");
     }
 

@@ -7,7 +7,7 @@
 <%@page import="java.util.List"%>
 <%@page import="br.edu.ifpe.garanhuns.projetoProvaPc.dominio.AplicacaoDaProva"%>
 <%@page import="br.edu.ifpe.garanhuns.projetoProvaPc.dominio.RespostaProva"%>
-<%@page contentType="text/html" pageEncoding="UTF-8" errorPage="pagina_erro.jsp"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,15 +16,14 @@
     </head>
     <body>
         <h1>Aqui aparece uma tabela Matricula - Nota </h1>
-        Tema da prova: <%=session.getAttribute("tema")%>
-        Turma: <%=session.getAttribute("turma")%>
-        Data: <%=session.getAttribute("data")%>
+        Tema da prova: <%=session.getAttribute("tema")%><br/>
+        Turma: <%=session.getAttribute("turma")%><br/>
+        Data: <%=session.getAttribute("data")%><br/><br/>
         
         <%
         List<RespostaProva> respostas = (List<RespostaProva>) session.getAttribute("respostas");
         for(int i=0;i<respostas.size();i++) {
-            RespostaProva r = respostas.get(i); 
-        %>
+            RespostaProva r = respostas.get(i); %>
         
             <%=r.getAluno()%> - <%=r.pontuacao()%> <br/>
         
