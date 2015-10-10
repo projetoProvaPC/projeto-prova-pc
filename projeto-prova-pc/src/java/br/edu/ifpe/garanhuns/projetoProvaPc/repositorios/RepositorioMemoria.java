@@ -39,7 +39,7 @@ public class RepositorioMemoria<Tipo extends Persistivel> implements Repositorio
     }
 
     @Override
-    public void alterar(Tipo t) {
+    public void atualizar(Tipo t) {
         try {
             elementos.get(t.getId()).alterar(t);
         } catch(NullPointerException e) {

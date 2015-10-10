@@ -17,7 +17,7 @@ public interface Repositorio<Tipo extends Persistivel> {
     
     public void adicionar(Tipo t) throws IdNaoDisponivelException;
     public Tipo remover(long id);
-    public void alterar(Tipo t);
+    public void atualizar(Tipo t);
     public Tipo recuperar(long id);
     public List<Tipo> recuperar();
 }

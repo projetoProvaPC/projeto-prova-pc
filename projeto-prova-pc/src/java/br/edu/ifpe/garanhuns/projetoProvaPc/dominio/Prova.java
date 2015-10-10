@@ -1,19 +1,20 @@
 package br.edu.ifpe.garanhuns.projetoProvaPc.dominio;
 
 import br.edu.ifpe.garanhuns.projetoProvaPc.repositorios.Persistivel;
+import java.io.Serializable;
 import java.util.*;
 import javax.persistence.*;
 
 @Entity
 @Table (name = "prova")
-public class Prova implements Persistivel<Prova>{
+public class Prova implements Persistivel<Prova> , Serializable{
 
     @Id
     @GeneratedValue
-    private long id = -1;
+    private long id;
     @Column
     private String tema;
-    @OneToMany
+    @OneToMany ( cascade = CascadeType.ALL )
     private List<QuestaoMultiplaEscolha> questoes = new ArrayList<>();
     @ManyToOne
     private Professor professor;
@@ -22,6 +23,7 @@ public class Prova implements Persistivel<Prova>{
     }
     
     public Prova(String tema) {
+        //this.id = -1;
         this.tema = tema;
     }
     
@@ -75,5 +77,12 @@ public class Prova implements Persistivel<Prova>{
         this.professor = professor;
     }
     
+    public List<Questao> getQuestoes() {
+        List<Questao> qs = new LinkedList<>();
+        for (QuestaoMultiplaEscolha questaoMultiplaEscolha : this.questoes) {
+            qs.add(questaoMultiplaEscolha);
+        }
+        return qs;
+    }
     
 }

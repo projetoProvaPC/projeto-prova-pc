@@ -12,8 +12,10 @@ import br.edu.ifpe.garanhuns.projetoProvaPc.dominio.*;
 import br.edu.ifpe.garanhuns.projetoProvaPc.excecoes.AutenticacaoFalhouException;
 import br.edu.ifpe.garanhuns.projetoProvaPc.excecoes.IdNaoDisponivelException;
 import br.edu.ifpe.garanhuns.projetoProvaPc.repositorios.RepositorioAplicacaoDaProva;
+import br.edu.ifpe.garanhuns.projetoProvaPc.repositorios.RepositorioAplicacaoDaProvaDB;
 import br.edu.ifpe.garanhuns.projetoProvaPc.repositorios.RepositorioAplicacaoDaProvaMemoria;
 import br.edu.ifpe.garanhuns.projetoProvaPc.repositorios.RepositorioProfessor;
+import br.edu.ifpe.garanhuns.projetoProvaPc.repositorios.RepositorioProfessorDB;
 import br.edu.ifpe.garanhuns.projetoProvaPc.repositorios.RepositorioProfessorMemoria;
 import java.util.HashMap;
 import java.util.List;
@@ -29,13 +31,7 @@ public final class Fachada {
     private static Fachada instance = null;
     private String prefix = "Fachada::";
     
-    private Fachada() {
-        try {
-            adicionarProfessor(123,"123");
-        } catch (IdNaoDisponivelException ex) {
-            Logger.getInstance().print(LoggerNivel.ERRO, prefix + "builder::IdNaoDisponivelException");
-        }
-    }
+    private Fachada() {}
     
     public static Fachada getInstance() {
         if(instance==null) instance = new Fachada();
@@ -44,8 +40,8 @@ public final class Fachada {
     
     //  Repositorios
     private String tipo;
-    private final RepositorioProfessor professores = new RepositorioProfessorMemoria();
-    private final RepositorioAplicacaoDaProva aplicacoes_das_provas = new RepositorioAplicacaoDaProvaMemoria();
+    private final RepositorioProfessor professores = new RepositorioProfessorDB();
+    private final RepositorioAplicacaoDaProva aplicacoes_das_provas = new RepositorioAplicacaoDaProvaDB();
     
     // Isso aqui tem que ser melhorado!
     private final HashMap <String,AplicacaoDaProva> senhas = new HashMap<>();
@@ -65,6 +61,8 @@ public final class Fachada {
         pb.setProfessor(a.getProfessor());
         
         pb.build();
+        
+        this.professores.atualizar(a.getProfessor());
     }
 
     public Professor recuperarProfessor(int siap) {
@@ -82,6 +80,7 @@ public final class Fachada {
             a = new AplicacaoDaProva(p, gerarSenha(), turma);
             this.aplicacoes_das_provas.adicionar(a);
             p.getProfessor().adicionarAplicacaoDaProva(a);
+            this.professores.atualizar(p.getProfessor());
         } catch (IdNaoDisponivelException ex) {
             Logger.getInstance().print(LoggerNivel.ERRO, prefix + "criarAplicacaoProva::IdNaoDisponivelException");
         }
@@ -124,6 +123,7 @@ public final class Fachada {
     public void adicionar(RespostaProvaQuestaoMultiplaEscolhaBuilder builder) {
         RespostaProva rp = builder.build();
         builder.getAplicacao().adicionar(rp);
+        this.aplicacoes_das_provas.atualizar(builder.getAplicacao());
     }
     
     

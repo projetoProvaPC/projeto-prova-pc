@@ -12,26 +12,32 @@ package br.edu.ifpe.garanhuns.projetoProvaPc.dominio;
  *
  * @author 20141D12GR0416
  */
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.*;
 
 // tem que ser abstract por que não pode ter uma questão que não seja nem de V/F
 // nem de multipla escolha
 @MappedSuperclass
-public abstract class Questao {
+public abstract class Questao implements Serializable{
     
     @Id
     @Column
-    private long id = -1;
+    private long id;
     @Column
     private String enunciado;
     @Column
     private int pontuacao;
-    @OneToMany
+    @OneToMany ( cascade = CascadeType.ALL )
     private List<Afirmacao> afirmacoes = new ArrayList<>();
 
+    public Questao() {
+    }
+    
     public Questao(String enunciado, int pontuacao) {
+        //this.id = -1;
         this.enunciado = enunciado;
         this.pontuacao = pontuacao;
     }
@@ -77,6 +83,14 @@ public abstract class Questao {
 
     public void setId(long id) {
         this.id = id;
+    }
+    
+    public List<Afirmacao> getAfirmacoes() {
+        List<Afirmacao> as = new LinkedList<>();
+        for (Afirmacao afirmacao : this.afirmacoes) {
+            as.add(afirmacao);
+        }
+        return as;
     }
 
 }

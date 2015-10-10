@@ -44,6 +44,7 @@ public class LoginServlet extends HttpServlet {
             response.sendRedirect("index_professor.jsp");
             
         } catch (Exception ex) {
+            request.getSession().setAttribute("exception", ex);
             response.sendRedirect("pagina_erro.jsp");
         }
         

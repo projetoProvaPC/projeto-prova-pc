@@ -4,16 +4,16 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
     <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-    <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/projetoprovapc</property>
-    <property name="hibernate.connection.username">pprovapc</property>
-    <property name="hibernate.connection.password">projetoprovapc</property>
-    <mapping class="br.edu.ifpe.garanhuns.projetoProvaPc.dominio.Professor"/>
+    <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/pprovapc2</property>
+    <property name="hibernate.connection.username">projetoprovapc</property>
+    <property name="hibernate.connection.password">pppsenha</property>
+    
+    <mapping class="br.edu.ifpe.garanhuns.projetoProvaPc.dominio.Professor" />
     <mapping class="br.edu.ifpe.garanhuns.projetoProvaPc.dominio.Afirmacao"/>
     <mapping class="br.edu.ifpe.garanhuns.projetoProvaPc.dominio.AplicacaoDaProva"/>
     <mapping class="br.edu.ifpe.garanhuns.projetoProvaPc.dominio.Prova"/>
     <mapping class="br.edu.ifpe.garanhuns.projetoProvaPc.dominio.Questao"/>
     <mapping class="br.edu.ifpe.garanhuns.projetoProvaPc.dominio.QuestaoMultiplaEscolha"/>
-    
     <mapping class="br.edu.ifpe.garanhuns.projetoProvaPc.dominio.RespostaProva"/>
     <mapping class="br.edu.ifpe.garanhuns.projetoProvaPc.dominio.RespostaQuestao"/>
     <mapping class="br.edu.ifpe.garanhuns.projetoProvaPc.dominio.RespostaQuestaoMultiplaEscolha"/>

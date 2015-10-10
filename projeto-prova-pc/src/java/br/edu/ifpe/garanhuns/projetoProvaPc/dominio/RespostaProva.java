@@ -1,5 +1,6 @@
 package br.edu.ifpe.garanhuns.projetoProvaPc.dominio;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -16,14 +17,14 @@ import javax.persistence.*;
 //Essa classe tem uma função muito importante: no final, é ela quem 
 
 // Ou RespostasAlunoProva
-@Table (name = "RespostaProva")
 @Entity
-public class RespostaProva {
+@Table (name = "resposta_prova")
+public class RespostaProva implements Serializable{
 
     @Id
     @GeneratedValue
     // São a resposta de uma aluno
-    private long id = -1;
+    private long id;
     @Column
     private String aluno;
     // Em uma determinada aplicação da prova
@@ -32,11 +33,18 @@ public class RespostaProva {
     // Relaciona questoes com as repostas para elas!
     @MapKey
     @MapKeyClass(Questao.class)
-    @OneToMany
+    @OneToMany ( cascade = CascadeType.ALL )
     private final Map<QuestaoMultiplaEscolha,RespostaQuestaoMultiplaEscolha> respostas;
 
+    public RespostaProva() {
+        this.respostas = new HashMap<>();
+    }
+
+    
+    
     // Construtor simples
     public RespostaProva(String aluno, AplicacaoDaProva prova) {
+        //this.id = -1;
         this.aluno = aluno;
         this.prova = prova;
         this.respostas = new HashMap<>();
@@ -129,5 +137,7 @@ public class RespostaProva {
     public void setId(long id) {
         this.id = id;
     }
+    
+    
     
 }

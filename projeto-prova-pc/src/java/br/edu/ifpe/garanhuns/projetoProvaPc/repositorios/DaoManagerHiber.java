@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifpe.garanhuns.projetoProvaPc.persistencia;
+package br.edu.ifpe.garanhuns.projetoProvaPc.repositorios;
 
 import java.util.List;
 import org.hibernate.Criteria;
@@ -55,7 +55,7 @@ public class DaoManagerHiber {
         Transaction tr = null;
         try{
            
-            s = sessionFactory.openSession();
+            //s = sessionFactory.getCurrentSession();
             tr = s.beginTransaction();  
         }catch(org.hibernate.exception.JDBCConnectionException ex){
             s.close();
@@ -74,7 +74,7 @@ public class DaoManagerHiber {
         Transaction tr = null;
         try{
            
-            s = sessionFactory.openSession();
+            //s = sessionFactory.getCurrentSession();
             tr = s.beginTransaction();  
         }catch(org.hibernate.exception.JDBCConnectionException ex){
             s.close();
@@ -85,16 +85,34 @@ public class DaoManagerHiber {
         
         Query query = s.createQuery(hql);
         
+        tr.commit();
+        
         s.flush();
         
         return query.list();
+    }
+    
+    public List recover( String hql, String param) {
+        Transaction tr = null;
+        try {
+            tr = s.beginTransaction();
+        } catch (org.hibernate.exception.JDBCConnectionException ex) {
+            s.close();
+            s = sessionFactory.openSession();
+            tr = s.beginTransaction();
+        }
+        Query q = s.createQuery(hql);
+        q.setParameter("param",param);
+        tr.commit();
+        s.flush();
+        return q.list();
     }
     
     public List recoverSQL(String sql){
         Transaction tr = null;
         try{
            
-            s = sessionFactory.openSession();
+            //s = sessionFactory.getCurrentSession();
             tr = s.beginTransaction();  
         }catch(org.hibernate.exception.JDBCConnectionException ex){
             s.close();
@@ -104,6 +122,8 @@ public class DaoManagerHiber {
          
         
         Query query = s.createSQLQuery(sql);
+        
+        tr.commit();
         
         s.flush();
         
@@ -126,7 +146,7 @@ public class DaoManagerHiber {
         Transaction tr = null;
         try{
            
-            s = sessionFactory.openSession();
+            //s = sessionFactory.getCurrentSession();
             tr = s.beginTransaction();  
         }catch(org.hibernate.exception.JDBCConnectionException ex){
             s.close();
@@ -135,7 +155,7 @@ public class DaoManagerHiber {
         }
          
         
-        s.update(o);
+        s.merge(o);
         
         tr.commit();
         
@@ -146,7 +166,7 @@ public class DaoManagerHiber {
         Transaction tr = null;
         try{
             s.clear();
-            s = sessionFactory.openSession();
+            //s = sessionFactory.getCurrentSession();
             tr = s.beginTransaction();
         }catch(Exception ex){
             s.close();

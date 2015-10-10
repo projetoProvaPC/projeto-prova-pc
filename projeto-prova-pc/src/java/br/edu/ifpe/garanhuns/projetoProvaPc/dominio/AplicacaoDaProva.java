@@ -1,6 +1,7 @@
 package br.edu.ifpe.garanhuns.projetoProvaPc.dominio;
 
 import br.edu.ifpe.garanhuns.projetoProvaPc.repositorios.Persistivel;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,13 +17,13 @@ import javax.persistence.*;
  *
  * @author 20141D12GR0416
  */
-@Table (name = "aplicacao_da_prova")
 @Entity
-public class AplicacaoDaProva implements Persistivel<AplicacaoDaProva> {
+@Table (name = "aplicacao_da_prova")
+public class AplicacaoDaProva implements Persistivel<AplicacaoDaProva> , Serializable {
     
     @Id
     @GeneratedValue
-    private long id = -1;
+    private long id;
     @ManyToOne
     private Prova prova;
     @Column
@@ -31,7 +32,7 @@ public class AplicacaoDaProva implements Persistivel<AplicacaoDaProva> {
     private String senha;
     @Column
     private String turma;
-    @OneToMany
+    @OneToMany ( cascade = CascadeType.ALL)
     List<RespostaProva> respostas = new LinkedList<>();
 
     public AplicacaoDaProva() {
@@ -40,6 +41,7 @@ public class AplicacaoDaProva implements Persistivel<AplicacaoDaProva> {
     // essa senha tem que ser gerada automaticamente
     // vamos ver depois como fazer isso
     public AplicacaoDaProva(Prova prova, String senha, String turma) {
+        //this.id=-1;
         this.senha = senha;
         this.turma = turma;
         this.prova = prova;

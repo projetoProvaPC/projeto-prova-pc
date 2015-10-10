@@ -1,27 +1,32 @@
 package br.edu.ifpe.garanhuns.projetoProvaPc.dominio;
 
 import br.edu.ifpe.garanhuns.projetoProvaPc.repositorios.Persistivel;
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.*;
 
-@Table (name = "Professor")
 @Entity
-public class Professor implements Persistivel<Professor> {
+@Table (name = "professor")
+public class Professor implements Persistivel<Professor>, Serializable {
 
     @Id
     @GeneratedValue
-    private long id = -1;
-    @Column
+    private long id;
+    @Column (name="siap",unique=true)
     private int siap;
     @Column
     private String senha;
-    @OneToMany
+    @OneToMany ( cascade = CascadeType.ALL )
     private final List<Prova> provas = new LinkedList<>();
-    @OneToMany
+    @OneToMany ( cascade = CascadeType.ALL )
     private final List<AplicacaoDaProva> aplicacoes = new LinkedList<>();
 
+    public Professor() {
+    }
+
     public Professor(int siap, String senha) {
+        //this.id = -1;
         this.siap = siap;
         this.senha = senha;
     }
@@ -46,10 +51,12 @@ public class Professor implements Persistivel<Professor> {
         return senha != null && senha.equals(this.senha);
     }
 
+    @Override
     public long getId() {
         return id;
     }
 
+    @Override
     public void setId(long id) {
         this.id = id;
     }
@@ -82,6 +89,14 @@ public class Professor implements Persistivel<Professor> {
 
     public void adicionarAplicacaoDaProva(AplicacaoDaProva a) {
         this.aplicacoes.add(a);
+    }
+
+    public List<Prova> getProvas() {
+        return provas;
+    }
+
+    public List<AplicacaoDaProva> getAplicacoes() {
+        return aplicacoes;
     }
 
 }

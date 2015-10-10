@@ -8,24 +8,27 @@ package br.edu.ifpe.garanhuns.projetoProvaPc.dominio;
 
 import br.edu.ifpe.garanhuns.projetoProvaPc.fachada.Logger;
 import br.edu.ifpe.garanhuns.projetoProvaPc.fachada.LoggerNivel;
+import java.io.Serializable;
 import javax.persistence.*;
 
 /**
  *
  * @author lucas
  */
-@Table (name = "RespostaQuestaoMultiplaEscolha")
 @Entity
-public class RespostaQuestaoMultiplaEscolha extends RespostaQuestao<QuestaoMultiplaEscolha>{
+@Table (name = "reposta_questao_multipla_escolha")
+public class RespostaQuestaoMultiplaEscolha extends RespostaQuestao<QuestaoMultiplaEscolha> implements Serializable {
     @Column
     private char resposta;
     
-    private String prefix = "RespostaQuestaoMultiplaEscolha::";
+    private String prefixo = "RespostaQuestaoMultiplaEscolha::";
+
+    public RespostaQuestaoMultiplaEscolha() {}
 
     public RespostaQuestaoMultiplaEscolha(QuestaoMultiplaEscolha questao, char resposta)/* throws Exception */ {
         super(questao);
         this.resposta = resposta;
-        Logger.getInstance().print(LoggerNivel.DEBUG, prefix + "chamou super(questao)\n" 
+        Logger.getInstance().print(LoggerNivel.DEBUG, prefixo + "chamou super(questao)\n" 
                 + "::params::questao= " + questao.toString());
         /*if(resposta > 'e')
             throw new Exception("Reposta inválida");*/

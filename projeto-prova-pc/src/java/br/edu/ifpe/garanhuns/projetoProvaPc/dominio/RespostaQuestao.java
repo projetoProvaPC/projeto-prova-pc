@@ -1,5 +1,6 @@
 package br.edu.ifpe.garanhuns.projetoProvaPc.dominio;
 
+import java.io.Serializable;
 import javax.persistence.*;
 
 /**
@@ -12,16 +13,20 @@ import javax.persistence.*;
 // É abstract por que pode ser RepostaQuestaoMultiplaEscolha ou
 // RepostaQuestaoVerdadeiroOuFalso
 @MappedSuperclass
-public abstract class RespostaQuestao<T extends Questao> {
+public abstract class RespostaQuestao<T extends Questao> implements Serializable{
     
     @Id
     @GeneratedValue
-    private long id = -1;
+    private long id;
     
     @ManyToOne
     private T questao;
 
+    public RespostaQuestao() {
+    }
+    
     public RespostaQuestao(T questao) {
+        //this.id=-1;
         this.questao = questao;
     }
 
@@ -44,6 +49,5 @@ public abstract class RespostaQuestao<T extends Questao> {
     public void setId(long id) {
         this.id = id;
     }
-
     
 }

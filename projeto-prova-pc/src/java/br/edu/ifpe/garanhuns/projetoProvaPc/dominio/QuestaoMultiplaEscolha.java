@@ -1,16 +1,20 @@
 package br.edu.ifpe.garanhuns.projetoProvaPc.dominio;
 
+import java.io.Serializable;
 import javax.persistence.*;
 
 /** * @author lucas
  */
 @Entity
-@Table ( name = "QustãoMultiplaEscolha")
-public class QuestaoMultiplaEscolha extends Questao {
+@Table ( name = "questao_multipla_escolha")
+public class QuestaoMultiplaEscolha extends Questao implements Serializable{
 
     // qual das 5 é a correta? (de 0 a 4, inclusive)
     @Column
     private char correta;
+
+    public QuestaoMultiplaEscolha() {
+    }
     
     // O contrutor aceita um array de 5 alternativas com 4 falsas e uma correta
     // Em qualquer outro caso lança uma exceção
@@ -56,6 +60,12 @@ public class QuestaoMultiplaEscolha extends Questao {
     public Afirmacao getAlterntiva(char a) {
         return super.getAfirmacao(a - 'a');
     }
+
+    public void setCorreta(char correta) {
+        this.correta = correta;
+    }
+    
+    
     
     public boolean isCorrect (char a) {
         return correta == a;
