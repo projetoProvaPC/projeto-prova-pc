@@ -12,11 +12,15 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <%@include file="WEB-INF/jspf/header.jspf" %>
+        <h2> Aplicação da prova </h2>
         Tema:<%= session.getAttribute("tema")%>
         Turma:<%= session.getAttribute("turma")%>
         Data:<%=session.getAttribute("data")%>
         
         <a href="RecuperarResultadosAplicacaoDeProvaServlet">Resultados</a> <br/>
-        
+
+        <%@include file="WEB-INF/jspf/footer.jspf" %>
+
     </body>
 </html>
