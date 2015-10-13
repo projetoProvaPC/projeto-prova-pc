@@ -14,7 +14,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Provas aplicadas</h1>
+        <%@include file="WEB-INF/jspf/header.jspf" %>
+
+        <h2>Provas aplicadas</h2>
         
         <% List<AplicacaoDaProva> as = (List<AplicacaoDaProva>) session.getAttribute("aplicacao_da_prova_list"); %>
         
@@ -34,5 +36,7 @@
             <% }  %>
         
         <% } %>
+        <%@include file="WEB-INF/jspf/footer.jspf" %>
+
     </body>
 </html>
