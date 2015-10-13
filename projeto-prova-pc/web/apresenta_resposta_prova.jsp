@@ -29,7 +29,7 @@
             <%=r.getAluno()%> - <%=r.pontuacao()%> <br/>
         
         <%}%>
-                
+    <%@include file="WEB-INF/jspf/footer.jspf" %>      
                 
     </body>
 </html>
