@@ -12,11 +12,17 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Seja bem-vindo ao Prova PC</h1>
+    <%ui:include file="WEB-INF/jspf/header.jspf"%>
+        <h2>Página de login para professores</h2>
+        
+        <p>Olá, professor! Obrigado por usar o nosso sistema.>/p>
+        
         <form method="post" action="LoginServlet">
             Login: <input type="number" name="login"> <br/>
             Senha: <input type="password" name="pwd"> <br/>
             <input type="submit" value="Entrar"/>
         </form>
+        
+        <%ui:include file="WEB-INF/jspf/footer.jspf"%>
     </body>
 </html>
