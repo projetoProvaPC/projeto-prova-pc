@@ -13,9 +13,14 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <%@include file="WEB-INF/jspf/header.jspf" %>
+        <h2> Home Page </h2>
         
         <a href="login_professor.jsp">login</a> <br/>
         <a href="formulario_cadastrar_professor.jsp">cadastrar professor</a> <br/>
         <a href="formulario_responder_prova.jsp">responder uma prova</a>
+
+        <%@include file="WEB-INF/jspf/footer.jspf" %>
+
     </body>
 </html>
