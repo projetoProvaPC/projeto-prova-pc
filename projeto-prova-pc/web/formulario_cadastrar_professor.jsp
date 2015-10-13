@@ -12,12 +12,16 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Cadastro de professores</h1>
+        <%@include file="WEB-INF/jspf/header.jspf" %>
+
+        <h2>Cadastro de professores</h2>
         <form method="post" action="CadastrarProfessorServlet">
             Siap: <input type="number" name="siap"/> <br/>
             Senha: <input type="password" name="senha1"/> <br/>
             Repetir Senha: <input type="password" name="senha2"/> <br/>
             <input type="submit" value="Cadastrar"/>
         </form>
+        <%@include file="WEB-INF/jspf/footer.jspf" %>
+
     </body>
 </html>

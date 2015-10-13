@@ -12,11 +12,14 @@
         <title>JSP Page</title>
     </head>
     <body>
+    <%@include file="WEB-INF/jspf/header.jspf" %>
+        <h2> Responder prova </h2>
         <form method="post" action="ResponderProvaServlet">
             Matricula: <input type="text" name="matricula"> <br/>
             Senha: <input type="text" name="senha"> <br/>
             <input type="submit" value="Iniciar"/>
         </form>
+    <%@include file="WEB-INF/jspf/footer.jspf" %>
 
     </body>
 </html>

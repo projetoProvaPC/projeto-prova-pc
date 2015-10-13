@@ -14,6 +14,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <%@include file="WEB-INF/jspf/header.jspf" %>
         <h1>Finja qie aqui tem uma tabela com resultados</h1>
         <p>Prova, turma, data</p>
         <% 
@@ -24,5 +25,6 @@
         <%=ap.getTema()%>, <%=ap.getTurma()%>, <%=ap.getData()%>, <a href="ApresentaRespostasProvaServlet?ap=<%=i%>">resultados</a> <br/>
         <%  }
         %>
+        <%@include file="WEB-INF/jspf/footer.jspf" %>
     </body>
 </html>
