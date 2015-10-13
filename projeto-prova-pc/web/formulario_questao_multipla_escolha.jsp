@@ -12,7 +12,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Pagina em construção!</h1>
+        <%@include file="WEB-INF/jspf/header.jspf" %>
+
+        <h2>Construção da prova!</h2>
         
         <form method="post" action="ConstrucaoQuestaoMultiplaEscolhaServlet">
             
@@ -37,6 +39,7 @@
             <input type="submit" value="Adicionar"/>
           
         </form>
-        
+        <%@include file="WEB-INF/jspf/footer.jspf" %>
+
     </body>
 </html>
