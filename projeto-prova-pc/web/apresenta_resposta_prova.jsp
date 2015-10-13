@@ -15,6 +15,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+    <%@include file="WEB-INF/jspf/header.jspf" %>
         <h1>Aqui aparece uma tabela Matricula - Nota </h1>
         Tema da prova: <%=session.getAttribute("tema")%><br/>
         Turma: <%=session.getAttribute("turma")%><br/>
