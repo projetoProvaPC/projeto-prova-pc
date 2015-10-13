@@ -16,7 +16,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <%ui:include file="WEB-INF/jspf/header.jspf"%>
+        <%@include file="WEB-INF/jspf/header.jspf"%>
         <h2>Escolha uma prova para aplicar</h2>
         <% 
         List<Prova> provas = (List<Prova>) session.getAttribute("provas");
@@ -27,6 +27,6 @@
         %>
         <%=p.getTema()%>: <a href="PreparaFormularioAplicarProvaServlet?i=<%=i%>">Aplicar</a><br/>
         <% } %>
-        <%ui:include file="WEB-INF/jspf/footer.jspf"%>
+        <%@include file="WEB-INF/jspf/footer.jspf"%>
     </body>
 </html>
