@@ -12,10 +12,14 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Formulario em construção!</h1>
+        <%@include file="WEB-INF/jspf/header.jspf" %>
+
+        <h2>Formulario em construção!</h2>
         <form method="post" action="IniciaConstrucaoProvaServlet">
             TEMA: <input type="text" name="tema"> <br/>
             <input type="submit" value="Adicionar Questão">
         </form>
+        <%@include file="WEB-INF/jspf/footer.jspf" %>
+
     </body>
 </html>
