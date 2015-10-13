@@ -14,7 +14,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Ops! Deu pau!</h1>
+        <%ui:include file="WEB-INF/jspf/header.jspf"%>
+        <h2>Ops! Deu pau!</h2>
         <% Exception e = (Exception) request.getSession().getAttribute("exception");
            if (e!=null) { 
                 StringWriter sw = new StringWriter();
@@ -27,6 +28,6 @@
            <% } %>
            
            <%@include file="WEB-INF/jspf/escreve_mensagens.jspf" %>
-           
+           <%ui:include file="WEB-INF/jspf/footer.jspf"%>
     </body>
 </html>
