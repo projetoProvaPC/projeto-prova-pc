@@ -120,10 +120,11 @@ public final class Fachada {
         return new RespostaProvaQuestaoMultiplaEscolhaBuilder(matricula,ap);
     }
 
-    public void adicionar(RespostaProvaQuestaoMultiplaEscolhaBuilder builder) {
+    public double adicionar(RespostaProvaQuestaoMultiplaEscolhaBuilder builder) {
         RespostaProva rp = builder.build();
         builder.getAplicacao().adicionar(rp);
         this.aplicacoes_das_provas.atualizar(builder.getAplicacao());
+        return rp.pontuacao();
     }
     
     

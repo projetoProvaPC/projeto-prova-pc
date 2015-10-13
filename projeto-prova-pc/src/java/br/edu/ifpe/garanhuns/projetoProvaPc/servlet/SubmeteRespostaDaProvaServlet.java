@@ -79,10 +79,12 @@ public class SubmeteRespostaDaProvaServlet extends HttpServlet {
             Logger.getInstance().print(LoggerNivel.DEBUG, prefix + "i=" + (i-1) );
             Logger.getInstance().print(LoggerNivel.DEBUG, prefix + "q=" + q.getEnunciado());
         }
-        Fachada.getInstance().adicionar(builder);
+        double nota = Fachada.getInstance().adicionar(builder);
         
         Logger.getInstance().print(LoggerNivel.DEBUG, prefix + "adicionando builder pela fachada");
         
+        session.setAttribute("matricula", matricula);
+        session.setAttribute("nota", nota);
         response.sendRedirect("pagina_prova_terminada.jsp");
         Logger.getInstance().print(LoggerNivel.DEBUG, prefix + "\n\n");
     }
