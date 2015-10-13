@@ -12,8 +12,14 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Finja que aqui tem uma prova!</h1>
+        <%@include file="WEB-INF/jspf/header.jspf" %>
+        
+        <h2> Prova em construção</h2>
+
         <a href="formulario_questao_multipla_escolha.jsp">Adicionar outra Questão</a><br/>
         <a href="ConstrucaoProvaServlet">Finalizar</a><br/>
+        
+        <%@include file="WEB-INF/jspf/footer.jspf" %>
+
     </body>
 </html>
