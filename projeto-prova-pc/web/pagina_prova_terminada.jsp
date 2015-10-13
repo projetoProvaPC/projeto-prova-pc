@@ -12,6 +12,12 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Parabens!!</h1>
+        
+        <p>
+            Matricula: <%=session.getAttribute("matricula")%>
+            Nota: <%=( (double) session.getAttribute("nota"))%>
+                    
+                
+        
     </body>
 </html>
