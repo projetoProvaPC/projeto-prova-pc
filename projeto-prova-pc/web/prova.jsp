@@ -17,8 +17,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-        
-        <h1>A prova!</h1>
+        <%ui:include file="WEB-INF/jspf/header.jspf"%>
+        <h2>A prova!</h2>
         <%---
         Esta página recupera a prova no atributo "prova" da session e contrói
         um formulário a partir dela. Os nomes dos campos (<input>) que serão
@@ -69,6 +69,6 @@
             <% }  %>
             <input type="submit"  value="Terminei"/>
         </form>
-        
+        <%ui:include file="WEB-INF/jspf/footer.jspf"%>
     </body>
 </html>

@@ -12,6 +12,9 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <%ui:include file="WEB-INF/jspf/header.jspf"%>
+        <h2>Atenção! Essa página é apenas para os desenvolvedores.</h2>
         <%@include file="WEB-INF/jspf/escreve_mensagens.jspf" %>
+        <%ui:include file="WEB-INF/jspf/footer.jspf"%>
     </body>
 </html>
