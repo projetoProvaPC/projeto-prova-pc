@@ -24,7 +24,7 @@ import javax.persistence.*;
 public abstract class Questao implements Serializable{
     
     @Id
-    @Column
+    @GeneratedValue
     private long id;
     @Column
     private String enunciado;

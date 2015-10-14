@@ -97,6 +97,9 @@ public class RespostaProva implements Serializable{
             total += r.calcularPontuacao();
         }
         
+        if(!this.respostas.isEmpty())
+            total *= 10 / this.respostas.size();
+        
         return total;
     }
     

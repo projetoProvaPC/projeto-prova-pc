@@ -15,7 +15,7 @@
         <%@include file="WEB-INF/jspf/header.jspf"%>
         <h2>Os alunos já podem começar a responder a prova!</h2>
         
-        <p>Distribua a senha abaixo para todos os alunos, eles só podem responder a prova com ele!</p>
+        <p>Distribua a senha abaixo para todos os alunos, eles só podem responder a prova com ela!</p>
         <p>Anote-a o mais rápido possível, antes de sair dessa página. Não dá para recuperar depois</p>
         
         <% if (session.getAttribute("turma")==null) {
