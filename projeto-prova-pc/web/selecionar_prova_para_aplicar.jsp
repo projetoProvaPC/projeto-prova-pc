@@ -16,6 +16,9 @@
         <title>JSP Page</title>
     </head>
     <body>
+        
+        <% if(session.getAttribute("autenticacao")==null) response.sendRedirect("login_professor.jsp"); %>
+        
         <%@include file="WEB-INF/jspf/header.jspf"%>
         <h2>Escolha uma prova para aplicar</h2>
         <% 

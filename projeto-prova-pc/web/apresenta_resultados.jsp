@@ -14,8 +14,9 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <% if(session.getAttribute("autenticacao")==null) response.sendRedirect("login_professor.jsp"); %>
         <%@include file="WEB-INF/jspf/header.jspf" %>
-        <h1>Finja qie aqui tem uma tabela com resultados</h1>
+        <h2>Escolha uma aplicação de prova para ver os resultados</h2>
         <p>Prova, turma, data</p>
         <% 
             List<AplicacaoDaProva> aps = (List<AplicacaoDaProva>) session.getAttribute("aplicacoes_das_provas");

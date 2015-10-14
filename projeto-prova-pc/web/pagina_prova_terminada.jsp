@@ -13,15 +13,15 @@
     </head>
     <body>
         
-        <%ui:include file="WEB-INF/jspf/header.jspf"%>
+        <%@include file="WEB-INF/jspf/header.jspf"%>
         
         <h2>Você acabou!</h2>
         
         <p>
             Matricula: <%=session.getAttribute("matricula")%>
-            Nota: <%=( (double) session.getAttribute("nota"))%>
+            Nota: <%=session.getAttribute("nota")%>
         </p>            
                 
-        <%ui:include file="WEB-INF/jspf/footer.jspf"%>
+        <%@include file="WEB-INF/jspf/footer.jspf"%>
     </body>
 </html>

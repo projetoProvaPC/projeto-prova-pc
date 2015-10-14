@@ -2,3 +2,9 @@
 <%@ page pageEncoding="UTF-8" %>
 
 <h1>Projeto Prova Pc</h1>
+
+<% if (session.getAttribute("autenticacao")!=null) { %>
+    <a href="../../index_professor.jsp">Voltar ao índice</a><br/>
+<% } else { %>
+    <a href="../../index.jsp">Voltar ao índice</a><br/>
+<% } %>

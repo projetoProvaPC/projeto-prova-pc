@@ -14,6 +14,9 @@
     <body>
     <%@include file="WEB-INF/jspf/header.jspf" %>
         <h2> Responder prova </h2>
+        
+        <p>Olá, aluno! Escreva aqui seu número de matrícula e a senha que o seu professor lhe fornecerá.</p>
+        
         <form method="post" action="ResponderProvaServlet">
             Matricula: <input type="text" name="matricula"> <br/>
             Senha: <input type="text" name="senha"> <br/>

@@ -12,10 +12,10 @@
         <title>JSP Page</title>
     </head>
     <body>
-    <%ui:include file="WEB-INF/jspf/header.jspf"%>
+    <%@include file="WEB-INF/jspf/header.jspf"%>
         <h2>Página de login para professores</h2>
         
-        <p>Olá, professor! Obrigado por usar o nosso sistema.>/p>
+        <p>Olá, professor! Obrigado por usar o nosso sistema.</p>
         
         <form method="post" action="LoginServlet">
             Login: <input type="number" name="login"> <br/>
@@ -23,6 +23,6 @@
             <input type="submit" value="Entrar"/>
         </form>
         
-        <%ui:include file="WEB-INF/jspf/footer.jspf"%>
+        <%@include file="WEB-INF/jspf/footer.jspf"%>
     </body>
 </html>

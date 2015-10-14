@@ -14,7 +14,7 @@
     <body>
         <%@include file="WEB-INF/jspf/header.jspf" %>
 
-        <h2>Construção da prova!</h2>
+        <h2>Adicionando uma nova questão à prova.</h2>
         
         <form method="post" action="ConstrucaoQuestaoMultiplaEscolhaServlet">
             

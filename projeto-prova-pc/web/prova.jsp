@@ -17,7 +17,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <%ui:include file="WEB-INF/jspf/header.jspf"%>
+        <%@include file="WEB-INF/jspf/header.jspf"%>
         <h2>A prova!</h2>
         <%---
         Esta página recupera a prova no atributo "prova" da session e contrói
@@ -69,6 +69,6 @@
             <% }  %>
             <input type="submit"  value="Terminei"/>
         </form>
-        <%ui:include file="WEB-INF/jspf/footer.jspf"%>
+        <%@include file="WEB-INF/jspf/footer.jspf"%>
     </body>
 </html>

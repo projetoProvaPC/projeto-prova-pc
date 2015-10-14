@@ -12,10 +12,12 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <% if(session.getAttribute("autenticacao")==null) response.sendRedirect("login.jsp"); %>
-        <h1>Ola professor!</h1>
+        <%@include file="WEB-INF/jspf/header.jspf"%>
+        <% if(session.getAttribute("autenticacao")==null) response.sendRedirect("login_professor.jsp"); %>
+        <h1>Olá, professor!</h1>
                 <a href="formulario_prova.jsp">Criar Prova</a> <br/>
-                <a href="RecuperarTodasAsProvasServlet">Aplicar prova:<a/> <br/>
-                <a href="RecuperarAplicacaoDeProvaServlet">Ver Resultados:<a/><br/>
+                <a href="RecuperarTodasAsProvasServlet">Aplicar prova<a/> <br/>
+                <a href="RecuperarAplicacaoDeProvaServlet">Ver Resultados<a/><br/>
+        <%@include file="WEB-INF/jspf/footer.jspf"%>
     </body>
 </html>

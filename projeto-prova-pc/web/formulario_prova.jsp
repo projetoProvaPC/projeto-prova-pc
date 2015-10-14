@@ -12,9 +12,11 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <% if(session.getAttribute("autenticacao")==null) response.sendRedirect("login_professor.jsp"); %>
+        
         <%@include file="WEB-INF/jspf/header.jspf" %>
 
-        <h2>Formulario em construção!</h2>
+        <h2>Escolha um tema para esta prova</h2>
         <form method="post" action="IniciaConstrucaoProvaServlet">
             TEMA: <input type="text" name="tema"> <br/>
             <input type="submit" value="Adicionar Questão">

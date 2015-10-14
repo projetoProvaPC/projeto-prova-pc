@@ -19,7 +19,7 @@ public class RepositorioProfessorDB extends RepositorioDB<Professor> implements 
 
     @Override
     public Professor recuperarPorSiap(int siap) {
-        return (Professor) super.dao.recover("from " + getClasse() + " where siap="+ siap).get(0);
+        return (Professor) super.dao.recover("from " + getClasse() + " where siap=" + siap).get(0);
     }
 
     @Override

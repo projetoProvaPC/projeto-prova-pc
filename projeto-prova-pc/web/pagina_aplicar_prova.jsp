@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        
+        <%@include file="WEB-INF/jspf/header.jspf"%>
         <h2>Os alunos já podem começar a responder a prova!</h2>
         
         <p>Distribua a senha abaixo para todos os alunos, eles só podem responder a prova com ele!</p>
@@ -29,6 +29,6 @@
          senha:<%=session.getAttribute("senha")%><br>
          <a href="index_professor.jsp">Voltar</a>
          
-         <%ui:include file="WEB-INF/jspf/footer.jspf"%>
+         <%@include file="WEB-INF/jspf/footer.jspf"%>
     </body>
 </html>
